@@ -1,0 +1,60 @@
+.pt-lg, .pv-lg { padding-top: 15px !important; }
+.text-center { text-align: center; }
+p{ margin: 0 0 10.5px; }
+.error-msg{ display: none; }
+
+.is-auth{ height: 100vh; width: 100vw; display: -webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack: center; 
+    -ms-flex-pack: center; justify-content: center;-webkit-box-align: center; -ms-flex-align: center;
+    align-items: center; background-image:url(../img/Hinjewadi-Banner.jpg); 
+    background-repeat: no-repeat; background-position-x: 13%; background-position-y: 50%;
+    background-size: cover; position: relative; overflow: hidden; min-width: 266px; }
+
+.login-block{ position: relative; width: 320px; min-height: 287px; margin-bottom: 0; background-color: #fff;
+    z-index: 3; border-radius: 0; box-shadow: 0 1px 1px rgba(0,0,0,.05); overflow: hidden;
+    -webkit-animation: formZoomOut 1s; animation: formZoomOut 1s; border: 1px solid gray; 
+    box-shadow: 5px 5px 22px rgba( 0,0,0, 0.5); }
+.form-heading{ padding: 10px 15px; background-color: #3a3f51; text-align: center; }
+.form-heading h1{  font-size: 18px; line-height: 18px; margin: 0; padding: 10px 0; color: #fff; }
+
+.form-body{ padding: 15px; }
+.has-feedback { position: relative; }
+.has-feedback .form-control{ padding-right: 43.75px; }
+.mt-lg, .mv-lg { margin-top: 15px !important; }
+
+.btn { border-radius: 0; font-size: 13px; border-color: transparent; 
+    outline: none !important; -webkit-appearance: none;  -webkit-transition: all 0.1s; transition: all 0.1s; }
+.btn-block { display: block; width: 100%; }
+.btn-primary { color: #fff; background-color: #016db6; border-color: #016db6; }
+.btn-primary:hover { color: #fff; background-color: #4b91ea !important; border-color: #3483e7 !important; }
+.btn.btn-default { border-color: #eaeaea; }
+
+.form-control { display: block; width: 100%; height: 35px; padding: 6px 16px; font-size: 14px; line-height: 1.52857;
+    color: #3a3f51; background-color: #fff; background-image: none; border: 1px solid #dde6e9; border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.form-control-feedback{ position: absolute; top: 0; right: 0; z-index: 2; display: block; width: 35px;
+    height: 35px; line-height: 35px; text-align: center; pointer-events: none; }
+.form-control + .form-control-feedback, .form-control + .parsley-errors-list + .form-control-feedback {
+    right: 0; left: auto; }
+
+#logingSection{  }
+#loginPills{ margin-bottom: 20px; border-bottom: 3px solid #c3d2e0; }
+#loginPills > li{ background-color: #eee; }
+#loginPills > li > a{ border-radius: 0; }
+#loginPillsli.active>a, #loginPills>li.active>a:hover, #loginPills>li.active>a:focus{ color: #fff; background-color: #016db6; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
