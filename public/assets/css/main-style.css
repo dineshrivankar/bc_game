@@ -2,6 +2,7 @@
 .text-center { text-align: center; }
 p{ margin: 0 0 10.5px; }
 .error-msg{ display: none; }
+body{ padding-top: 70px; padding-bottom: 60px; }
 
 .is-auth{ height: 100vh; width: 100vw; display: -webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack: center; 
     -ms-flex-pack: center; justify-content: center;-webkit-box-align: center; -ms-flex-align: center;
@@ -43,7 +44,61 @@ p{ margin: 0 0 10.5px; }
 #loginPills{ margin-bottom: 20px; border-bottom: 3px solid #c3d2e0; }
 #loginPills > li{ background-color: #eee; }
 #loginPills > li > a{ border-radius: 0; }
-#loginPillsli.active>a, #loginPills>li.active>a:hover, #loginPills>li.active>a:focus{ color: #fff; background-color: #016db6; } 
+#loginPillsli.active>a, #loginPills>li.active>a:hover, #loginPills>li.active>a:focus{ color: #fff; background-color: #016db6; }
+
+
+
+<!-- Dashboard start from here -->
+.app-header{  }
+#topHeader{ position: fixed; top: 0; left: 0; width: 100%; z-index: 9; } 
+#topHeader.navbar { border-radius: 0; }
+#topHeader.navbar-default { background-color: #00569a; border-color: #00569a; }
+#topHeader.navbar>.container .navbar-brand, #topHeader.navbar>.container-fluid .navbar-brand { 
+    padding: 13px 0 0 15px; text-transform: uppercase; color: #FFF; font-weight: 800; font-size: 25px; }
+#topHeader .collapse.in{ border: none; }
+#topHeader .user-login { }
+#topHeader .user-login > li > a { color: #fff; background-color: transparent; padding-top: 12px; padding-bottom: 12px; }
+#topHeader .login-pic-wrap{ width: 25px; height: 25px; overflow: hidden; display: inline-block; 
+    border-radius: 50%; vertical-align: middle; margin-left: 8px; }
+#topHeader .login-pic-wrap > img{ width: 100%; }
+
+.user-section{ width: 202px; margin: 0 auto; }
+.user-name{ text-align: center; }
+
+.coin-dtl-section{ background-color: #8bb8f1; padding: 20px 23px; margin-bottom: 17px; }
+.coin-dtl-section.mined{ background-color:#9289ca; }
+.coin-icon-wrap{ position: relative; width: 130px; height: 130px; border-radius: 50%; overflow: hidden; 
+    display: inline-block; vertical-align: middle; margin-right: 10px; }
+.coin-icon-wrap > img{ width: 110%; position: absolute; top: -7px; left: -7px; }
+.content-info-wrap{ display: inline-block; vertical-align: middle; color: #fff; }
+
+.update-head-wrap{ background-color: #5d9cec; padding: 2px 17px; margin-bottom: 10px; color: #fff; }
+.update-head-wrap h3{ }
+.transfer-coin-row{  }
+.ppl-pic-wrap{ width:40px; height: 40px; overflow: hidden; display: inline-block; vertical-align: middle; }
+.ppl-pic-wrap > img{ width: 100%; }
+.transfer-coin-row span.fa{ margin: 0 15px; font-size: 25px; vertical-align: middle; color: #6c7780; }
+.transaction-stats-wrap{ display: inline-block; vertical-align: middle; padding-left: 15px; }
+.transaction-stats-wrap h3.number-of-coin{ margin: 0; }
+.transaction-stats-wrap p.time-stap{ margin: 0; }
+.transaction-stats-wrap p.time-stap > span{ font-size: 13px; margin: 0 0 0 5px; }
+
+.btn.invester-btn {
+    float: right;
+    min-width: 100px;
+    border-radius: 0;
+    text-transform: uppercase;
+    margin: 4px 0 0 0;
+    background-color: #016db6;
+    color: #fff;
+}
+.btn.invester-btn:hover{ background-color: #035892; }
+.send-n-view-btn{ margin-top: 200px; }
+.send-n-view-btn .btn{ margin-right: 10px; float: none; }
+
+.footer{ width: 100%; background-color: #00569a; color: #fff; position: fixed; left: 0; bottom: 0; text-align: center; }
+.footer > p{ padding: 6px; margin: 0; }
+
 
 h4 {
     text-transform: uppercase;
@@ -57,12 +112,6 @@ h4 {
 i.fa.fa-user-circle {
     font-size: 24px;
 }
-
-
-
-
-
-
 
 
 

@@ -1,63 +1,135 @@
-/*
- angular.module("investorApp")
-    .factory("investorService", ["baseSvc","$http", function(baseService,$http) { 
-        var listEndPoint = '/_api/';  
-        var baseUrl = ""; 
-
-        var getUserProfile_URL = baseUrl + "UserProfile/GetResourceDetails?UserId="; 
-        var EndorseSkill_URL = baseUrl + "Endorsement/SaveEndorsementDetails";
-
-
-
-        //GET API List Start ----------------------------------------------------- 
-
-
-        var getUserProfile = function(employeecode) {  
-            var url =getUserProfile_URL + employeecode + "&OffSet=0";
-            var query = url;
-
-            return baseService.getRequest(query);
-        };
-
-        var EndorseSkill = function(param) {
-            var data =  param;
-            var url = EndorseSkill_URL; 
-
-            return baseService.postRequest(data, url);
-        };   
-
-        return { 
-            getUserProfile : getUserProfile ,
-            EndorseSkill: EndorseSkill  
-        };
-            
-}]); 
-*/
-
-
-
 angular.module("investorApp").service("investorService", ["baseSvc","$http", function(baseService,$http){ 
     
-    var caseStudyDtlUrl = "Hawkeye/DocDetails?docId=";
-    var raterCaseStudyUrl ="Hawkeye/RateDoc/?docId=";
+    var base_URL = "http://10.244.51.108:9095/";
+    var registerUserUrl = base_URL + "users/register";
+    var sendCoin_URL = base_URL + "deals";
+    var savePuzzle_URL = base_URL + "puzzles/save";
+    var solvePuzzle_URL = base_URL + "puzzles/solve";
     
-    this.caseStudyDetails = function (docId) {   
+    var loginUserUrl = base_URL + "users/login";
+    var getUserDetail_URL = base_URL + "users/";
+    var getAllUserDetail_URL = base_URL + "users";
+    var getAllTransaction_URL = base_URL + "transaction";
+    var getLatestPuzzle_URL = base_URL + "puzzles/latest";
+    var getAllPuzzle_URL = base_URL + "puzzles";
+    var getAllBlocks_URL = base_URL + "puzzles/blocks";
+   
+    
+     this.registerUser = function(param) {
         return $http({
-            method: 'GET',
-            withCredentials: true,				
-            data:  'json',
-            url: BASE_HAWKEYE_URL + caseStudyDtlUrl + docId + "&isNotRefresh=true" + USERNAME + "&v=" + new Date().getTime()
-        });
-    }
-
-     this.rateCaseStudy = function (param) {
-        return $http({
-            method: 'POST',
-            withCredentials: true,
-            data:  'json',
-            url: BASE_HAWKEYE_URL + raterCaseStudyUrl + param.docId + "&rating="+param.rating  + USERNAME  + "&v="+new Date().getTime()
-             
+            method: 'POST', 
+            data:  param,
+            headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: registerUserUrl  
         });
      }
      
+      this.loginUser = function (param) {   
+        return $http({
+            method: 'POST', 		
+            data:  param,
+            headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: loginUserUrl
+        });
+    }
+      
+    this.sendCoin = function(param) {
+        return $http({
+            method: 'POST', 
+            data:  param,
+            headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: sendCoin_URL  
+        });
+     }
+    
+     this.savePuzzle = function(param) {
+        return $http({
+            method: 'POST', 
+            data:  param,
+            headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: savePuzzle_URL  
+        });
+     } 
+     
+   this.solvePuzzle = function(param) {
+    return $http({
+        method: 'POST', 
+        data:  param,
+        headers: { 
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        url: solvePuzzle_URL  
+    });
+     } 
+     
+     
+    this.getUserDetail = function(userName) {   
+        return $http({
+            method: 'GET', 		
+             headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: getUserDetail_URL +  userName
+        });
+    }
+    
+    this.getAllUserDetail = function() {   
+        return $http({
+            method: 'GET', 		
+             headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: getAllUserDetail_URL
+        });
+    }
+    
+    this.getAllTransaction = function() {   
+        return $http({
+            method: 'GET', 		
+             headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: getAllTransaction_URL
+        });
+    }
+     
+    this.getLatestPuzzle = function() {   
+        return $http({
+            method: 'GET', 		
+             headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: getLatestPuzzle_URL
+        });
+    }
+    
+    this.getAllPuzzle = function() {   
+        return $http({
+            method: 'GET', 		
+             headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: getAllPuzzle_URL
+        });
+    }
+    
+    this.getAllBlocks = function() {   
+        return $http({
+            method: 'GET', 		
+             headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: getAllBlocks_URL
+        });
+    }
+    
+    
 }]); 
