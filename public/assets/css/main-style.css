@@ -43,11 +43,20 @@ p{ margin: 0 0 10.5px; }
 #loginPills{ margin-bottom: 20px; border-bottom: 3px solid #c3d2e0; }
 #loginPills > li{ background-color: #eee; }
 #loginPills > li > a{ border-radius: 0; }
-#loginPillsli.active>a, #loginPills>li.active>a:hover, #loginPills>li.active>a:focus{ color: #fff; background-color: #016db6; }
+#loginPillsli.active>a, #loginPills>li.active>a:hover, #loginPills>li.active>a:focus{ color: #fff; background-color: #016db6; } 
 
-
-
-
+h4 {
+    text-transform: uppercase;
+}
+.dash-window {
+    margin-top: 20px;
+    padding: 20px 10px 20px 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #f7f7f7;
+}
+i.fa.fa-user-circle {
+    font-size: 24px;
+}
 
 
 
