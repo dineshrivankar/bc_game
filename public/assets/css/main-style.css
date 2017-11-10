@@ -120,9 +120,17 @@ i.fa.fa-user-circle {
 .footer .bottom-nav .nav-icon.selected {background-color:#cacaca; }
 .footer .bottom-nav .nav-icon div {margin: 0 auto;}
 .logout-btn {float:right;}
-.logout-btn svg {padding: 13px 10px 0 15px;}
+#topHeader .navbar-toggle:hover,#topHeader .navbar-toggle:focus {background-color: transparent; }
+#topHeader .navbar-toggle {border:none;}
+.navbar-header {width:100%;}
 /*Gaurav Code End*/
 
+
+@media (max-width: 1500px) {
+    .navbar-toggle {
+        display: block;
+    }
+}
 
 
 
