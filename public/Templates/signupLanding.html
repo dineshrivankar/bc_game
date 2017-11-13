@@ -4,7 +4,7 @@
             <h1>Login</h1>
         </div>
         <div id="logingSection" class="form-body">
-            <ul id="loginPills" class="nav nav-pills">
+            <ul id="loginPills" class="nav nav-pills" ng-if="false">
                 <li class="active"><a data-toggle="pill" href="#signIn">Sign In</a></li>
                 <li><a data-toggle="pill" href="#signUp">Sign Up</a></li>
             </ul>
@@ -26,6 +26,11 @@
 
                     <button type="button" class="btn btn-block btn-primary mt-lg" ng-click="login(frmSignIn);">
                         Login <i ng-if="isSignInLoaded" class="fa fa-spinner fa-pulse fa-fw"></i>
+                    </button>
+                    
+                     <button type="button" class="btn btn-block btn-primary mt-lg" ng-click="login(frmSignIn);"
+                             style="background-color: green;border-color: green;">
+                        Register <i ng-if="isSignInLoaded" class="fa fa-spinner fa-pulse fa-fw"></i>
                     </button>
 
                     <p ng-if="isSignInError" class="pt-lg text-center text-danger"> {{errorSignInMessage}} </p>

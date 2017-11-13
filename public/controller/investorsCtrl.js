@@ -1,6 +1,6 @@
  
 angular.module("investorApp") 
-.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment", function ($scope,$rootScope, investorService, $location,$window,moment) {   
+.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route", function ($scope,$rootScope, investorService, $location,$window,moment,$route) {   
    
     //Header
     $scope.loggedInUser= "";
@@ -177,6 +177,7 @@ angular.module("investorApp")
     
     $scope.gotoDashBoard = function(){
          $location.path('/dashboard', true);
+         //$window.location.reload();
     }
      
     $scope.gotoAllTransactions = function(){
@@ -209,6 +210,8 @@ angular.module("investorApp")
                  .success(function(response){   
                      $scope.isSendCoinError = true;
                      $scope.errorSendCoinMsg = "Transfer Successful!";
+                     $scope.availableCoins  = $scope.availableCoins - $scope.frmSendCoin.coin;
+                     $rootScope.$broadcast("availableCoins", $scope.availableCoins);
                      scope.getDashBoardDetails();
                 }).error(function(error){ 
                    $scope.isSendCoinError = true;
@@ -230,7 +233,7 @@ angular.module("investorApp")
             $rootScope.isHeaderShow = true;
             $rootScope.isFooterShow = true;
             if(homeUrl.indexOf('dashboard') > -1){
-                 $scope.getDashBoardDetails();
+                $scope.getDashBoardDetails();
             }else if(homeUrl.indexOf('block') > -1){
                 // $scope.getBlocksDetails();
             }else if(homeUrl.indexOf('transaction') > -1){
