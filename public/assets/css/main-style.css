@@ -6,11 +6,11 @@ body{ padding-top: 70px; padding-bottom: 60px; }
 
 .is-auth{ height: 100vh; width: 100vw; display: -webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack: center; 
     -ms-flex-pack: center; justify-content: center;-webkit-box-align: center; -ms-flex-align: center;
-    align-items: center; background-image:url(../img/Hinjewadi-Banner.jpg); 
+    align-items: center; background-image:url(../img/default-bg.jpg); 
     background-repeat: no-repeat; background-position-x: 13%; background-position-y: 50%;
     background-size: cover; position: relative; overflow: hidden; min-width: 266px; }
 
-.login-block{ position: relative; width: 320px; min-height: 287px; margin-bottom: 0; background-color: #fff;
+.login-block{ position: relative; width: 320px;  min-height: 250px;/* min-height: 287px;*/ margin-bottom: 0; background-color: #fff;
     z-index: 3; border-radius: 0; box-shadow: 0 1px 1px rgba(0,0,0,.05); overflow: hidden;
     -webkit-animation: formZoomOut 1s; animation: formZoomOut 1s; border: 1px solid gray; 
     box-shadow: 5px 5px 22px rgba( 0,0,0, 0.5); }

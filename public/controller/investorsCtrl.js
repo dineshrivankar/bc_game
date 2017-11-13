@@ -1,6 +1,6 @@
  
 angular.module("investorApp") 
-.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment", function ($scope,$rootScope, investorService, $location,$window,moment) {   
+.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route", function ($scope,$rootScope, investorService, $location,$window,moment,$route) {   
    
     //Header
     $scope.loggedInUser= "";
@@ -33,21 +33,22 @@ angular.module("investorApp")
     $scope.frmSendCoin.coin = 0;
     $scope.availableCoins = 0;
     
-    $scope.signUp = function(frmSignUp){ 
-        if($scope.frmSignUp.signUpEmail.trim() == "" ){
-            $scope.errorSignUpMessage = "Please enter email and password!";  
-            $scope.isSignUpErrorMessage = true;
-        }else if(!ValidateSpace($scope.frmSignUp.signUpEmail)){
+    $scope.signUp = function(frmSignUp){   
+         if($scope.frmSignIn.signInEmail.trim() == ""){
+            $scope.errorSignInMessage = "Please enter username!";  
+            $scope.isSignInError = true;
+        }else if($scope.frmSignIn.signInEmail.length < 5){
+            $scope.errorSignInMessage = "Username must be greater than 5 characters";  
+            $scope.isSignInError = true;
+        }else if(!ValidateSpace($scope.frmSignIn.signInEmail)){
             $scope.errorSignUpMessage = "Space is not allowed in Username";  
             $scope.isSignUpErrorMessage = true;
-        }else if($scope.frmSignUp.signUpEmail.length < 5){
-            $scope.errorSignUpMessage = "Username must be greater than 5 characters";  
-            $scope.isSignUpErrorMessage = true;
         }
+        
         else{
             $scope.isSignUpLoaded = true;
            var param = {
-                          "username": $scope.frmSignUp.signUpEmail
+                          "username": $scope.frmSignIn.signInEmail
                         }
             var myData = $scope.methodSerialize(param); 
             
@@ -72,7 +73,7 @@ angular.module("investorApp")
     
     $scope.login = function(frmSignIn){ 
         if($scope.frmSignIn.signInEmail.trim() == ""){
-            $scope.errorSignInMessage = "Please enter email and password!";  
+            $scope.errorSignInMessage = "Please enter username!";  
             $scope.isSignInError = true;
         }else if($scope.frmSignIn.signInEmail.length < 5){
             $scope.errorSignInMessage = "Username must be greater than 5 characters";  
@@ -177,6 +178,7 @@ angular.module("investorApp")
     
     $scope.gotoDashBoard = function(){
          $location.path('/dashboard', true);
+         //$window.location.reload();
     }
      
     $scope.gotoAllTransactions = function(){
@@ -209,16 +211,22 @@ angular.module("investorApp")
                  .success(function(response){   
                      $scope.isSendCoinError = true;
                      $scope.errorSendCoinMsg = "Transfer Successful!";
+                     $scope.availableCoins  = $scope.availableCoins - $scope.frmSendCoin.coin;
+                     $rootScope.$broadcast("availableCoins", $scope.availableCoins);
                      scope.getDashBoardDetails();
                 }).error(function(error){ 
                    $scope.isSendCoinError = true;
                    $scope.errorSendCoinMsg = error;
              }); 
-        }        
-  
+        }     
     
     //Send Coins Screen Code ends here -----------------
     
+     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+        console.log(event)
+        console.log(next)
+        console.log(current)
+     });
     
     angular.element(document).ready(function(){     
         var homeUrl =$location.path()// window.location.href.split()
@@ -230,7 +238,7 @@ angular.module("investorApp")
             $rootScope.isHeaderShow = true;
             $rootScope.isFooterShow = true;
             if(homeUrl.indexOf('dashboard') > -1){
-                 $scope.getDashBoardDetails();
+                $scope.getDashBoardDetails();
             }else if(homeUrl.indexOf('block') > -1){
                 // $scope.getBlocksDetails();
             }else if(homeUrl.indexOf('transaction') > -1){
