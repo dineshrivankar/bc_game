@@ -197,7 +197,21 @@ angular.module("investorApp")
     
     //Send Coins Screen Code starts here -----------------
     
-     $scope.sendCoin = function(frmSendCoin){  
+     $scope.sendCoin = function(frmSendCoin){ 
+          if(($scope.frmSendCoin.toUserName.trim()).length <= 0){
+            $scope.isSendCoinError = true;
+            $scope.errorSendCoinMsg ="Please enter username!";
+            return;
+         }
+         if($scope.availableCoins < $scope.frmSendCoin.coin){
+            $scope.isSendCoinError = true;
+            $scope.errorSendCoinMsg ="Insufficient balance!";
+            return;
+         }else if($scope.frmSendCoin.coin <= 0){
+            $scope.isSendCoinError = true;
+            $scope.errorSendCoinMsg ="Amount must be greater than 0";
+            return;
+         }
          var frmUser = $window.sessionStorage.getItem("loggedInUserName");
           
            var param = {
@@ -213,7 +227,11 @@ angular.module("investorApp")
                      $scope.errorSendCoinMsg = "Transfer Successful!";
                      $scope.availableCoins  = $scope.availableCoins - $scope.frmSendCoin.coin;
                      $rootScope.$broadcast("availableCoins", $scope.availableCoins);
-                     scope.getDashBoardDetails();
+                     $scope.frmSendCoin={}; 
+                     $scope.frmSendCoin.toUserName ="";
+                     $scope.frmSendCoin.coin = 0;
+                     //scope.getDashBoardDetails();
+                
                 }).error(function(error){ 
                    $scope.isSendCoinError = true;
                    $scope.errorSendCoinMsg = error;
@@ -253,7 +271,8 @@ angular.module("investorApp")
          
      });
     
-    angular.element(document).ready(function(){     
+    angular.element(document).ready(function(){
+         
         var homeUrl =$location.path()// window.location.href.split()
         if(homeUrl.indexOf('dashboard') <= -1 && homeUrl.indexOf('block') <= -1 && homeUrl.indexOf('transaction') <= -1 && homeUrl.indexOf('sendCoin') <= -1 ){
             $rootScope.isHeaderShow = false;
