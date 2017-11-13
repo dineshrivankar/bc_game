@@ -239,10 +239,18 @@ angular.module("investorApp")
    }; 
     //Transaction Screen code end here-----------------
     
-     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-       /* console.log(event)
-        console.log(next)
-        console.log(current)*/
+     $rootScope.$on( "$routeChangeStart", function(event, next, current) { 
+        if(next.originalPath=="/dashboard"){
+            $scope.getDashBoardDetails();
+        }else if(next.originalPath=="/transaction"){
+             $scope.getTransaction();
+        }else if(next.originalPath=="/block"){
+            // $scope.getTransaction();
+        }else if(next.originalPath=="/sendCoin"){
+              $scope.getDashBoardDetails();
+        }
+         
+         
      });
     
     angular.element(document).ready(function(){     
