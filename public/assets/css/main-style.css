@@ -67,15 +67,15 @@ body{ padding-top: 70px; padding-bottom: 60px; }
 
 .coin-dtl-section{ /*background-color: #8bb8f1;*/ background-color: #fff; border-left: 5px solid #8bb8f1; padding: 16px 23px; margin-bottom: 17px; border-radius: 5px; }
 .coin-dtl-section.mined{ /*background-color:#9289ca;*/ border-left: 5px solid #9289ca;}
-.coin-icon-wrap{ position: relative; width: 30px; height: 30px; border-radius: 50%; overflow: hidden; 
+.coin-icon-wrap{ position: relative; width: 42px; height: 51px; border-radius: 50%; overflow: hidden; 
     display: inline-block; vertical-align: middle; margin-right: 10px; }
-.coin-icon-wrap > img{ width: 30px; /*position: absolute; top: -2px; left: -2px;*/ }
+.coin-icon-wrap > img{ width: 40px; position: absolute; top: 8px; /*left: -2px;*/ }
 .content-info-wrap{ display: inline-block; vertical-align: middle; /*color: #fff;*/ color: #484848; }
 
 .update-head-wrap{ /*background-color: #5d9cec;*/ background-color: #00569a; padding: 2px 17px; margin-bottom: 10px; color: #fff; }
 .update-head-wrap h3{ }
-.transfer-coin-row{ background-color: #fff;  padding: 10px 0; -webkit-box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); -moz-box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); margin-top: 10px;}
-.ppl-pic-wrap{ /*width:40px; height: 40px;*/ overflow: hidden; display: inline-block; vertical-align: middle; text-align: center; width: 19%;}
+.transfer-coin-row{ background-color: #fff;  padding: 10px 0 10px 5px; -webkit-box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); -moz-box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); margin-top: 10px;}
+.ppl-pic-wrap{ /*width:40px; height: 40px; overflow: hidden;*/ display: inline-block; vertical-align: middle; text-align: center; width: 19%;}
 .ppl-pic-wrap > img{ width:40px; height: 40px; margin: 0 auto; }
 .transfer-coin-row span.fa{ margin: 0 15px; font-size: 25px; vertical-align: middle; color: #6c7780; }
 .transaction-stats-wrap{ display: inline-block; vertical-align: middle; /*padding-left: 15px;*/ width: 59%;text-align: center;}
@@ -94,7 +94,7 @@ body{ padding-top: 70px; padding-bottom: 60px; }
     display: none;
 }
 .btn.invester-btn:hover{ background-color: #035892; }
-.send-n-view-btn{ margin-top: 200px; }
+.send-n-view-btn{ margin-top: 200px; display: none;}
 .send-n-view-btn .btn{ margin-right: 10px; float: none; }
 
 .footer{ width: 100%; background-color: #00569a; color: #fff; position: fixed; left: 0; bottom: 0; text-align: center; }
@@ -132,6 +132,7 @@ img.actionlink { height: 30px; width: 30px;}
 /*.transaction-stats-wrap .transact-arrow .arrow-length {width: 95%; border-bottom: 1px solid #000; display: inline-block;}
 .transaction-stats-wrap .transact-arrow i {border: solid black;border-width: 0 3px 3px 0;display: inline-block;padding: 3px;}
 .transaction-stats-wrap .transact-arrow .right-facing {transform: rotate(-45deg);-webkit-transform: rotate(-45deg);}*/
+.ppl-pic-wrap figcaption {word-wrap: break-word;}
 /*Gaurav Code End*/
 
 
