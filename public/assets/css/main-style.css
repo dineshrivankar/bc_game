@@ -4,7 +4,7 @@
 .text-center { text-align: center; }
 p{ margin: 0 0 10.5px; }
 .error-msg{ display: none; }
-body { background-color: #eee; color: #1c2028;
+body { background-color: #eee; color: #496b7b;
     font-family: "Helvetica",Helvetica Neue,Arial,sans-serif;padding-top: 70px; padding-bottom: 60px; }
 
 .is-auth{ height: 100vh; width: 100vw; display: -webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack: center; 
@@ -76,7 +76,7 @@ body { background-color: #eee; color: #1c2028;
 .content-info-wrap{ display: inline-block; vertical-align: middle; /*color: #fff;*/ color: #484848; }
 
 .update-head-wrap{ /*background-color: #5d9cec;*/ background-color: #00569a; padding: 2px 17px; margin-bottom: 10px; color: #fff; }
-.update-head-wrap h3{ }
+.update-head-wrap h3{ margin: 10px 0; }
 .transfer-coin-row{ background-color: #fff;  padding: 10px 0 10px 5px; -webkit-box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); -moz-box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); margin-top: 10px;}
 .ppl-pic-wrap{ /*width:40px; height: 40px; overflow: hidden;*/ display: inline-block; vertical-align: middle; text-align: center; width: 19%;}
 .ppl-pic-wrap > img{ width:40px; height: 40px; margin: 0 auto; }
@@ -138,12 +138,34 @@ img.actionlink { height: 30px; width: 30px;}
 .ppl-pic-wrap figcaption {word-wrap: break-word;}
 /*Gaurav Code End*/
 
+.transfer-coin-row{ margin-bottom: 10px;     
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(161,156,161,1);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(161,156,161,1);
+    box-shadow: 2px 2px 5px 0px rgba(161,156,161,1); } 
+.transfer-coin-row:hover{ cursor: pointer; }
+.number-wrap{ width: 6%; display: inline-block;vertical-align: middle; text-align: center;
+    padding: 0 0 0 3px; }
+.number-wrap > h3{ width: 62%; border: 1px solid #afbfc7; padding: 0; background-color: #ddd; 
+    font-size: 38px; color: #95a1a9; margin: 0 auto; }
+.block-stats-wrap{ width: 69%; display: inline-block; vertical-align: middle; }
+.blk-img-wrap{ width: 30px; height: 30px; overflow: hidden; display: inline-block; 
+    margin-right: 5px; vertical-align: middle; }
+.blk-img-wrap > img{ width: 100%; }
+.mined-by{ margin: 0 0 2px 0; text-transform: capitalize; color: #496b7b; font-size: 19px; }
+.blk-id-reward{ margin: 0 0 0 0; color: #677285; }
+.blk-id-reward > span{ margin-right: 20px; font-weight: bold; }
 
+/* Media Query */
 @media (max-width: 1500px) {
     .navbar-toggle {
         display: block;
     }
 }
 
+@media (max-width: 414px) {
+    .update-head-wrap > h3{ margin: 0; }
+    .number-wrap { width: 27%; }
+    .number-wrap > h3{ padding: 4px 0; }
+}
 
 
