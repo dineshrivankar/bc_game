@@ -33,6 +33,9 @@ angular.module("investorApp")
     $scope.frmSendCoin.coin = 0;
     $scope.availableCoins = 0;
     
+    // Tab selection
+    $scope.selectedTab = "";
+    
     $scope.signUp = function(frmSignUp){   
          if($scope.frmSignIn.signInEmail.trim() == ""){
             $scope.errorSignInMessage = "Please enter username!";  
@@ -242,12 +245,16 @@ angular.module("investorApp")
      $rootScope.$on( "$routeChangeStart", function(event, next, current) { 
         if(next.originalPath=="/dashboard"){
             $scope.getDashBoardDetails();
+            $scope.selectedTab = "dashboard";
         }else if(next.originalPath=="/transaction"){
              $scope.getTransaction();
+            $scope.selectedTab = "transaction";
         }else if(next.originalPath=="/block"){
             // $scope.getTransaction();
+            $scope.selectedTab = "block";
         }else if(next.originalPath=="/sendCoin"){
               $scope.getDashBoardDetails();
+            $scope.selectedTab = "sendCoin";
         }
          
          
