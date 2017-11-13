@@ -128,9 +128,12 @@ i.fa.fa-user-circle {
 .navbar-header {width:100%;}
 .navbar-header button {padding: 0; margin-right: 0;}
 img.actionlink { height: 30px; width: 30px;}
-.transaction-stats-wrap .trasact-arrow .arrow-length {width: 95%; border-bottom: 1px solid #000; display: inline-block;}
-.transaction-stats-wrap .trasact-arrow i {border: solid black;border-width: 0 3px 3px 0;display: inline-block;padding: 3px;}
-.transaction-stats-wrap .trasact-arrow .right-facing {transform: rotate(-45deg);-webkit-transform: rotate(-45deg);}
+
+.transaction-stats-wrap .transact-arrow { text-align: center; margin: 0;}
+.transaction-stats-wrap .transact-arrow img { margin: 0 auto; }
+/*.transaction-stats-wrap .transact-arrow .arrow-length {width: 95%; border-bottom: 1px solid #000; display: inline-block;}
+.transaction-stats-wrap .transact-arrow i {border: solid black;border-width: 0 3px 3px 0;display: inline-block;padding: 3px;}
+.transaction-stats-wrap .transact-arrow .right-facing {transform: rotate(-45deg);-webkit-transform: rotate(-45deg);}*/
 /*Gaurav Code End*/
 
 
