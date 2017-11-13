@@ -65,16 +65,16 @@ body{ padding-top: 70px; padding-bottom: 60px; }
 .user-section{ width: 202px; margin: 0 auto; }
 .user-name{ text-align: center; }
 
-.coin-dtl-section{ background-color: #8bb8f1; padding: 20px 23px; margin-bottom: 17px; }
-.coin-dtl-section.mined{ background-color:#9289ca; }
-.coin-icon-wrap{ position: relative; width: 130px; height: 130px; border-radius: 50%; overflow: hidden; 
+.coin-dtl-section{ /*background-color: #8bb8f1;*/ background-color: #fff; border-left: 5px solid #8bb8f1; padding: 16px 23px; margin-bottom: 17px; border-radius: 5px; }
+.coin-dtl-section.mined{ /*background-color:#9289ca;*/ border-left: 5px solid #9289ca;}
+.coin-icon-wrap{ position: relative; width: 30px; height: 30px; border-radius: 50%; overflow: hidden; 
     display: inline-block; vertical-align: middle; margin-right: 10px; }
-.coin-icon-wrap > img{ width: 110%; position: absolute; top: -7px; left: -7px; }
-.content-info-wrap{ display: inline-block; vertical-align: middle; color: #fff; }
+.coin-icon-wrap > img{ width: 110%; position: absolute; top: -2px; left: -2px; }
+.content-info-wrap{ display: inline-block; vertical-align: middle; /*color: #fff;*/ color: #484848; }
 
-.update-head-wrap{ background-color: #5d9cec; padding: 2px 17px; margin-bottom: 10px; color: #fff; }
+.update-head-wrap{ /*background-color: #5d9cec;*/ background-color: #00569a; padding: 2px 17px; margin-bottom: 10px; color: #fff; }
 .update-head-wrap h3{ }
-.transfer-coin-row{  }
+.transfer-coin-row{ background-color: #fff; border: 2px solid #cacaca;  padding: 10px 0;  }
 .ppl-pic-wrap{ width:40px; height: 40px; overflow: hidden; display: inline-block; vertical-align: middle; }
 .ppl-pic-wrap > img{ width: 100%; }
 .transfer-coin-row span.fa{ margin: 0 15px; font-size: 25px; vertical-align: middle; color: #6c7780; }
@@ -91,6 +91,7 @@ body{ padding-top: 70px; padding-bottom: 60px; }
     margin: 4px 0 0 0;
     background-color: #016db6;
     color: #fff;
+    display: none;
 }
 .btn.invester-btn:hover{ background-color: #035892; }
 .send-n-view-btn{ margin-top: 200px; }
@@ -113,6 +114,26 @@ i.fa.fa-user-circle {
     font-size: 24px;
 }
 
+/*Gaurav Code Start*/
+.footer .bottom-nav {background-color: #eee; color: #000; border-top: 3px solid #cacaca/*#00569a*/;}
+.footer .bottom-nav .nav-icon {width:24%; margin: 0 auto;display:inline-block; background-color: transparent;webkit-transition: background 2s;transition: background 2s;}
+.footer .bottom-nav .nav-icon:hover {background-color:#cacaca;}
+.footer .bottom-nav .nav-icon.selected {background-color:#cacaca; }
+.footer .bottom-nav .nav-icon div {margin: 0 auto;}
+.logout-btn {float:right;}
+#topHeader .navbar-toggle:hover,#topHeader .navbar-toggle:focus {background-color: transparent; }
+#topHeader .navbar-toggle {border:none;}
+.navbar-header {width:100%;}
+.navbar-header button {padding: 0; margin-right: 0;}
+img.actionlink { height: 30px; width: 30px;}
+/*Gaurav Code End*/
+
+
+@media (max-width: 1500px) {
+    .navbar-toggle {
+        display: block;
+    }
+}
 
 
 
