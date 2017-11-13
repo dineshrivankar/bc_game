@@ -267,6 +267,22 @@ angular.module("investorApp")
          $('#myModal').modal('show'); 
      } 
 
+    /****************************************************/
+    /*****************   GET ALL BLOCK  *****************/
+    $scope.getAllBlockDetails = function(){
+        investorService.getAllBlocks()
+         .success(function(response){ 
+            $scope.blockDetails = response; 
+            console.log("blcok details ", $scope.blockDetails )
+        }).error(function(error){ 
+          console.log("Error in loading dashboard!")
+        }); 
+    }; 
+    
+    $scope.gotoTransactionId = function(id){
+      $location.path('/transaction/'+id, true);
+    }
+    
      $rootScope.$on( "$routeChangeStart", function(event, next, current) { 
         if(next.originalPath=="/dashboard"){
             $scope.getDashBoardDetails();
@@ -275,7 +291,7 @@ angular.module("investorApp")
              $scope.getTransaction();
             $scope.selectedTab = "transaction";
         }else if(next.originalPath=="/block"){
-            // $scope.getTransaction();
+             $scope.getAllBlockDetails();
             $scope.selectedTab = "block";
         }else if(next.originalPath=="/sendCoin"){
               $scope.getDashBoardDetails();
@@ -301,7 +317,7 @@ angular.module("investorApp")
             if(homeUrl.indexOf('dashboard') > -1){
                 $scope.getDashBoardDetails();
             }else if(homeUrl.indexOf('block') > -1){
-                // $scope.getBlocksDetails();
+                 $scope.getAllBlockDetails();
             }else if(homeUrl.indexOf('transaction') > -1){
                 $scope.getTransaction();
             }else if(homeUrl.indexOf('sendCoin') > -1){
