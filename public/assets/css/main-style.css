@@ -1,8 +1,11 @@
+
+
 .pt-lg, .pv-lg { padding-top: 15px !important; }
 .text-center { text-align: center; }
 p{ margin: 0 0 10.5px; }
 .error-msg{ display: none; }
-body{ padding-top: 70px; padding-bottom: 60px; }
+body { background-color: #eee; color: #1c2028;
+    font-family: "Helvetica",Helvetica Neue,Arial,sans-serif;padding-top: 70px; padding-bottom: 60px; }
 
 .is-auth{ height: 100vh; width: 100vw; display: -webkit-box; display: -ms-flexbox; display: flex;-webkit-box-pack: center; 
     -ms-flex-pack: center; justify-content: center;-webkit-box-align: center; -ms-flex-align: center;
