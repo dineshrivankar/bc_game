@@ -1,6 +1,6 @@
  
 angular.module("investorApp") 
-.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route", function ($scope,$rootScope, investorService, $location,$window,moment,$route) {   
+.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route","$interval", function ($scope,$rootScope, investorService, $location,$window,moment,$route,$interval) {   
    
     //Header
     $scope.loggedInUser= "";
@@ -109,9 +109,12 @@ angular.module("investorApp")
    };
 
     $scope.logOut = function(){
+        $rootScope.isHeaderShow = false;
+        $rootScope.isFooterShow = false;
+        $('body').css({ "padding":"0" });
         $window.sessionStorage.setItem("loggedInUserName","");
         clearAll()
-         $location.path('/', true);
+        $location.path('/', true); 
     };
     
     $scope.methodSerialize = function (obj) {
@@ -260,6 +263,10 @@ angular.module("investorApp")
    }; 
     //Transaction Screen code end here-----------------
     
+      $scope.toggleModel=function(){                                                            
+         $('#myModal').modal('show'); 
+     } 
+
      $rootScope.$on( "$routeChangeStart", function(event, next, current) { 
         if(next.originalPath=="/dashboard"){
             $scope.getDashBoardDetails();
@@ -273,13 +280,16 @@ angular.module("investorApp")
         }else if(next.originalPath=="/sendCoin"){
               $scope.getDashBoardDetails();
             $scope.selectedTab = "sendCoin";
+        }else{
+            $rootScope.isHeaderShow = false;
+            $rootScope.isFooterShow = false;
+           // $('body').css({ "padding":"0" }); 
         }
          
          
      });
     
     angular.element(document).ready(function(){
-         
         var homeUrl =$location.path()// window.location.href.split()
         if(homeUrl.indexOf('dashboard') <= -1 && homeUrl.indexOf('block') <= -1 && homeUrl.indexOf('transaction') <= -1 && homeUrl.indexOf('sendCoin') <= -1 ){
             $rootScope.isHeaderShow = false;
@@ -296,9 +306,16 @@ angular.module("investorApp")
                 $scope.getTransaction();
             }else if(homeUrl.indexOf('sendCoin') > -1){
                 $scope.getDashBoardDetails();
-            }  
-            
+            }              
         }
+        
+         setInterval(function() {
+         var homeUrl =$location.path()// window.location.href.split()
+        if(homeUrl != "/"){
+             $scope.toggleModel();
+        }
+       
+    }, 10000);
     })
 
 }]); 

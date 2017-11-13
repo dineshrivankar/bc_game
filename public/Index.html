@@ -59,8 +59,9 @@
 
 
 
-    <div data-ng-app="investorApp" ng-controller="investorsCtrl">
+    <div data-ng-app="investorApp" ng-controller="investorsCtrl"> 
         <div ng-show="isHeaderShow" class="app-header" ng-include='"Templates/header.html"'></div>
+        <div class="app-footer" ng-include='"Templates/puzzle.html"'></div>
         <div class="people-app" ng-view></div>
         <div ng-show="isFooterShow" class="app-footer" ng-include='"Templates/footer.html"'></div>
     </div>
