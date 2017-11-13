@@ -67,7 +67,7 @@ body{ padding-top: 70px; padding-bottom: 60px; }
 
 .coin-dtl-section{ /*background-color: #8bb8f1;*/ background-color: #fff; border-left: 5px solid #8bb8f1; padding: 16px 23px; margin-bottom: 17px; border-radius: 5px; }
 .coin-dtl-section.mined{ /*background-color:#9289ca;*/ border-left: 5px solid #9289ca;}
-.coin-icon-wrap{ position: relative; width: 30px; height: 30px; border-radius: 50%; overflow: hidden; 
+.coin-icon-wrap{ position: relative; width: 35px; height: 30px; border-radius: 50%; overflow: hidden; 
     display: inline-block; vertical-align: middle; margin-right: 10px; }
 .coin-icon-wrap > img{ width: 30px; /*position: absolute; top: -2px; left: -2px;*/ }
 .content-info-wrap{ display: inline-block; vertical-align: middle; /*color: #fff;*/ color: #484848; }
