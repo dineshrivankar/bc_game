@@ -69,16 +69,18 @@ body{ padding-top: 70px; padding-bottom: 60px; }
 .coin-dtl-section.mined{ /*background-color:#9289ca;*/ border-left: 5px solid #9289ca;}
 .coin-icon-wrap{ position: relative; width: 30px; height: 30px; border-radius: 50%; overflow: hidden; 
     display: inline-block; vertical-align: middle; margin-right: 10px; }
-.coin-icon-wrap > img{ width: 110%; position: absolute; top: -2px; left: -2px; }
+.coin-icon-wrap > img{ width: 30px; /*position: absolute; top: -2px; left: -2px;*/ }
 .content-info-wrap{ display: inline-block; vertical-align: middle; /*color: #fff;*/ color: #484848; }
 
 .update-head-wrap{ /*background-color: #5d9cec;*/ background-color: #00569a; padding: 2px 17px; margin-bottom: 10px; color: #fff; }
 .update-head-wrap h3{ }
-.transfer-coin-row{ background-color: #fff; border: 2px solid #cacaca;  padding: 10px 0;  }
-.ppl-pic-wrap{ width:40px; height: 40px; overflow: hidden; display: inline-block; vertical-align: middle; }
-.ppl-pic-wrap > img{ width: 100%; }
+.transfer-coin-row{ background-color: #fff;  padding: 10px 0; -webkit-box-shadow: 10px 10px 14px 0px rgba(161,156,161,1);
+-moz-box-shadow: 10px 10px 14px 0px rgba(161,156,161,1);
+box-shadow: 10px 10px 14px 0px rgba(161,156,161,1); }
+.ppl-pic-wrap{ /*width:40px; height: 40px;*/ overflow: hidden; display: inline-block; vertical-align: middle; text-align: center; width: 19%;}
+.ppl-pic-wrap > img{ width:40px; height: 40px; margin: 0 auto; }
 .transfer-coin-row span.fa{ margin: 0 15px; font-size: 25px; vertical-align: middle; color: #6c7780; }
-.transaction-stats-wrap{ display: inline-block; vertical-align: middle; padding-left: 15px; }
+.transaction-stats-wrap{ display: inline-block; vertical-align: middle; /*padding-left: 15px;*/ width: 59%;text-align: center;}
 .transaction-stats-wrap h3.number-of-coin{ margin: 0; }
 .transaction-stats-wrap p.time-stap{ margin: 0; }
 .transaction-stats-wrap p.time-stap > span{ font-size: 13px; margin: 0 0 0 5px; }
@@ -126,6 +128,9 @@ i.fa.fa-user-circle {
 .navbar-header {width:100%;}
 .navbar-header button {padding: 0; margin-right: 0;}
 img.actionlink { height: 30px; width: 30px;}
+.transaction-stats-wrap .trasact-arrow .arrow-length {width: 95%; border-bottom: 1px solid #000; display: inline-block;}
+.transaction-stats-wrap .trasact-arrow i {border: solid black;border-width: 0 3px 3px 0;display: inline-block;padding: 3px;}
+.transaction-stats-wrap .trasact-arrow .right-facing {transform: rotate(-45deg);-webkit-transform: rotate(-45deg);}
 /*Gaurav Code End*/
 
 
