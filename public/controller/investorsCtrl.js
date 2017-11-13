@@ -222,10 +222,27 @@ angular.module("investorApp")
     
     //Send Coins Screen Code ends here -----------------
     
+     	//Transaction  Screen code starts here-----------------    
+      $scope.getTransaction = function(){
+			$scope.isSignUpLoaded = true;		  
+           investorService.getAllTransaction()
+                 .success(function(response){ 				 
+				    $location.path('/transaction', true);
+                    $scope.transactionDtl = response;
+                    $scope.isSignUpLoaded = false;                
+                    $scope.isHeaderShow = true;
+                    $scope.isFooterShow = true;
+                }).error(function(error){ 
+                  console.log("Error in loading transaction!")
+             }); 
+             
+   }; 
+    //Transaction Screen code end here-----------------
+    
      $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-        console.log(event)
+       /* console.log(event)
         console.log(next)
-        console.log(current)
+        console.log(current)*/
      });
     
     angular.element(document).ready(function(){     
@@ -242,7 +259,7 @@ angular.module("investorApp")
             }else if(homeUrl.indexOf('block') > -1){
                 // $scope.getBlocksDetails();
             }else if(homeUrl.indexOf('transaction') > -1){
-                // $scope.getTransactionDetails();
+                $scope.getTransaction();
             }else if(homeUrl.indexOf('sendCoin') > -1){
                 $scope.getDashBoardDetails();
             }  

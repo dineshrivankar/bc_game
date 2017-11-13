@@ -9,7 +9,7 @@ angular.module("investorApp").service("investorService", ["baseSvc","$http", fun
     var loginUserUrl = base_URL + "users/login";
     var getUserDetail_URL = base_URL + "users/";
     var getAllUserDetail_URL = base_URL + "users";
-    var getAllTransaction_URL = base_URL + "transaction";
+    var getAllTransaction_URL = base_URL + "deals";
     var getLatestPuzzle_URL = base_URL + "puzzles/latest";
     var getAllPuzzle_URL = base_URL + "puzzles";
     var getLatestTransaction_URL = base_URL + "deals/latest";
