@@ -1,9 +1,11 @@
  
 angular.module("investorApp") 
-.controller("investorsCtrl", ["$scope", "investorService",'$location','$window', function ($scope, investorService, $location,$window) {   
+.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment", function ($scope,$rootScope, investorService, $location,$window,moment) {   
    
-    $scope.isHeaderShow = false;
-    $scope.isFooterShow = false;
+    //Header
+    $scope.loggedInUser= "";
+    $rootScope.isHeaderShow = false;
+    $rootScope.isFooterShow = false;
     
     //Login Screen code starts here-----------------
     
@@ -22,6 +24,14 @@ angular.module("investorApp")
     $scope.frmSignUp.signUpEmail ="";
     $scope.frmSignUp.signUpPassword = "";
     $scope.isSignUpLoaded = false; 
+    
+    //Send Coins
+    $scope.isSendCoinError = false;
+    $scope.errorSendCoinMsg = "";
+    $scope.frmSendCoin={}; 
+    $scope.frmSendCoin.toUserName ="";
+    $scope.frmSendCoin.coin = 0;
+    $scope.availableCoins = 0;
     
     $scope.signUp = function(frmSignUp){ 
         if($scope.frmSignUp.signUpEmail.trim() == "" ){
@@ -42,21 +52,23 @@ angular.module("investorApp")
             var myData = $scope.methodSerialize(param); 
             
            investorService.registerUser(myData)
-                 .success(function(response){ 
-                    clearAll();
+                 .success(function(response){  
                     $location.path('/dashboard', true);
                     $scope.isSignUpLoaded = false; 
                     $window.sessionStorage.setItem("loggedInUserName",$scope.frmSignUp.signUpEmail)
-                    $scope.isHeaderShow = true;
-                    $scope.isFooterShow = true;
+                    $rootScope.isHeaderShow = true;
+                    $rootScope.isFooterShow = true;
+                    $scope.loggedInUser = $scope.frmSignUp.signUpEmail;
+                    $scope.getDashBoardDetails();
                     $('body').css({"padding":"70px 0 40px 0"});
+                    clearAll();
                 }).error(function(error){ 
                   $scope.errorSignUpMessage = error;  
                   $scope.isSignUpErrorMessage = true;
                   $scope.isSignUpLoaded = false;
              }); 
         }        
-   }; cx
+   }; 
     
     $scope.login = function(frmSignIn){ 
         if($scope.frmSignIn.signInEmail.trim() == ""){
@@ -74,14 +86,16 @@ angular.module("investorApp")
             var myData = $scope.methodSerialize(param); 
             
            investorService.loginUser(myData)
-                 .success(function(response){ 
-                    clearAll();
+                 .success(function(response){  
                     $location.path('/dashboard', true);
                     $scope.isSignInLoaded = false; 
                     $window.sessionStorage.setItem("loggedInUserName",$scope.frmSignIn.signInEmail)
-                    $scope.isHeaderShow = true;
-                    $scope.isFooterShow = true;
+                    $rootScope.isHeaderShow = true;
+                    $rootScope.isFooterShow = true;
+                    $scope.loggedInUser = $scope.frmSignIn.signInEmail;
+                    $scope.getDashBoardDetails();
                     $('body').css({"padding":"70px 0 40px 0"});
+                    clearAll();
                 }).error(function(error){ 
                     $scope.errorSignInMessage = error;  
                     $scope.isSignInError = true;
@@ -90,6 +104,12 @@ angular.module("investorApp")
         }        
    };
 
+    $scope.logOut = function(){
+        $window.sessionStorage.setItem("loggedInUserName","");
+        clearAll()
+         $location.path('/', true);
+    };
+    
     $scope.methodSerialize = function (obj) {
                  var str = [];
                  for (var p in obj)
@@ -123,27 +143,102 @@ angular.module("investorApp")
         $scope.frmSignUp={};  
         $scope.frmSignUp.signUpEmail ="";
         $scope.frmSignUp.signUpPassword = "";
+        $scope.latestTransDtl = [];
     }
     
     //Login Screen code ends here-----------------
     
     //DashBoard Screen code starts here-----------------
     
+      $scope.getDashBoardDetails = function(){  
+         $scope.loggedInUser = window.sessionStorage.getItem("loggedInUserName");
+           investorService.getUserDetail($scope.loggedInUser)
+                 .success(function(response){ 
+                    $scope.dashBoardDtl = response; 
+                    $scope.availableCoins = response.balance;
+                }).error(function(error){ 
+                  console.log("Error in loading dashboard!")
+             }); 
+             $scope.getLatestTransactions();
+    }; 
+    
+     $scope.latestTransDtl = [];
+     $scope.getLatestTransactions = function(){  
+           investorService.getLatestTransaction()
+                 .success(function(response){ 
+                   if(response){
+                     $scope.latestTransDtl.push(response); 
+                   }                   
+                }).error(function(error){ 
+                  console.log("Error in loading dashboard!")
+             }); 
+             
+   }; 
+    
+    $scope.gotoDashBoard = function(){
+         $location.path('/dashboard', true);
+    }
+     
+    $scope.gotoAllTransactions = function(){
+         $location.path('/transaction', true);
+    }
+    
+     $scope.gotoBlocks = function(){
+         $location.path('/block', true);
+    }
+     
+    $scope.gotoSendCoin = function(){
+         $location.path('/sendCoin', true);
+    }
     
     //DashBoard Screen code starts here-----------------
     
+    //Send Coins Screen Code starts here -----------------
+    
+     $scope.sendCoin = function(frmSendCoin){  
+         var frmUser = $window.sessionStorage.getItem("loggedInUserName");
+          
+           var param = {
+                          "fromUser": frmUser,
+                          "toUser": $scope.frmSendCoin.toUserName,
+                          "amount": $scope.frmSendCoin.coin
+                        }
+            var myData = $scope.methodSerialize(param); 
+            
+           investorService.sendCoin(myData)
+                 .success(function(response){   
+                     $scope.isSendCoinError = true;
+                     $scope.errorSendCoinMsg = "Transfer Successful!";
+                     scope.getDashBoardDetails();
+                }).error(function(error){ 
+                   $scope.isSendCoinError = true;
+                   $scope.errorSendCoinMsg = error;
+             }); 
+        }        
+  
+    
+    //Send Coins Screen Code ends here -----------------
+    
+    
     angular.element(document).ready(function(){     
-        var homeUrl = window.location.href.split()
-        if(homeUrl.indexOf('Index.html')){
-            $scope.isHeaderShow = false;
-            $scope.isFooterShow = false;
-            $('body').css({ "padding":"0" });
-        } else if(homeUrl.indexOf('dashboard')){
-            $scope.isHeaderShow = true;
-            $scope.isFooterShow = true;
-        } else {
-            $scope.isHeaderShow = true;
-            $scope.isFooterShow = true;
+        var homeUrl =$location.path()// window.location.href.split()
+        if(homeUrl.indexOf('dashboard') <= -1 && homeUrl.indexOf('block') <= -1 && homeUrl.indexOf('transaction') <= -1 && homeUrl.indexOf('sendCoin') <= -1 ){
+            $rootScope.isHeaderShow = false;
+            $rootScope.isFooterShow = false;
+            $('body').css({ "padding":"0" }); 
+        }else {
+            $rootScope.isHeaderShow = true;
+            $rootScope.isFooterShow = true;
+            if(homeUrl.indexOf('dashboard') > -1){
+                 $scope.getDashBoardDetails();
+            }else if(homeUrl.indexOf('block') > -1){
+                // $scope.getBlocksDetails();
+            }else if(homeUrl.indexOf('transaction') > -1){
+                // $scope.getTransactionDetails();
+            }else if(homeUrl.indexOf('sendCoin') > -1){
+                $scope.getDashBoardDetails();
+            }  
+            
         }
     })
 

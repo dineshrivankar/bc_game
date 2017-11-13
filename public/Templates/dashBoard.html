@@ -17,7 +17,7 @@
                             <img class="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGkzSn-RxcUsufcoLR6B3leCQK4jBcC7k4ve5hMszM5Irz7qDW" alt="" />
                         </div>
                         <div class="content-info-wrap">
-                            <h1>100 <span>PSL Coin</span></h1>
+                            <h1>{{dashBoardDtl.balance}} <span>PSL Coin</span></h1>
                         </div>
                     </div>
                 </div>
@@ -27,31 +27,35 @@
                             <img class="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGkzSn-RxcUsufcoLR6B3leCQK4jBcC7k4ve5hMszM5Irz7qDW" alt="" />
                         </div>
                         <div class="content-info-wrap">
-                            <h1>2 <span>Mined Coin</span></h1>
+                            <h1>{{dashBoardDtl.blocksMined}} <span>Mined Coin</span></h1>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="update-head-wrap">
                         <h3>Latest update transaction</h3>
-                    </div>
-                    <div class="transfer-coin-row">
+                    </div> 
+                    <div class="transfer-coin-row" ng-repeat="trans in latestTransDtl">
                         <div class="ppl-pic-wrap">
                             <img class="img-responsive" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGKiEahbMrl60poEt87ZTN4NfiI37dIE-Fx9lXN0QGNv8k4ZGB3w" alt="" >
+                            <span>{{trans.fromUser}}</span>
                         </div>
                         <span class="fa fa-angle-double-right"></span>
                         <div class="ppl-pic-wrap">
                             <img class="img-responsive" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTRJxncjV2A5ciZwN4vVYyS-kX0PF88PtAH2dppQVnU-nx9O7B" alt="" >
+                             <span>{{trans.toUser}}</span>
                         </div>
                         <div class="transaction-stats-wrap">
-                            <h3 class="number-of-coin"> 12 coins has been transfered </h3>
-                            <p class="time-stap"> 2 min ago <span class="fa fa-clock-o" </span> </p>                            
-                        </div>
-                        <input type="button" value="All transaction" class="btn invester-btn">
+                            <h3 class="number-of-coin"> {{trans.amount}} coins has been transfered </h3>
+                            <p class="time-stap" am-time-ago="trans.updatedAt"><span class="fa fa-clock-o"> </span> </p>    
+                        </div> 
                     </div>
+                     <input type="button" value="All transaction" class="btn invester-btn" 
+                            ng-click="gotoAllTransactions()" ng-if="false">
                     <div class="send-n-view-btn">
-                        <input type="button" value="Send" class="btn invester-btn">
-                        <input type="button" value="View" class="btn invester-btn">
+                        <input type="button" value="Send" class="btn invester-btn"  ng-click="gotoSendCoin()" 
+                               ng-if="false">
+                        <input type="button" value="View" class="btn invester-btn"  ng-click="gotoBlocks()" ng-if="false">
                     </div>
                 </div>
             </div>

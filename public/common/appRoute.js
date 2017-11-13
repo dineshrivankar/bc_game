@@ -2,7 +2,14 @@ angular.module("investorApp").config(['$routeProvider', '$compileProvider', '$ht
    //$httpProvider.defaults.cache = true;
    $routeProvider
         .when("/", {
-	   		templateUrl:"Templates/signupLanding.html"
+	   		templateUrl:"Templates/signupLanding.html",
+             resolve:{
+                data: [ '$rootScope', '$location', function($rootScope,$location){
+                    $rootScope.isHeaderShow = false;
+                     $rootScope.isFooterShow = false;
+                    $('body').css({"padding":"0 0 0 0"});
+                }]
+            }
         })
         .when("/signUp", {
             templateUrl:"Templates/signupLanding.html"

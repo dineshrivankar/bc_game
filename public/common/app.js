@@ -1,6 +1,6 @@
 "use strict";
 (function() {
-    angular.module("investorApp", ["ngRoute", "ngAnimate","angularUtils.directives.dirPagination", "ui.bootstrap"])
+    angular.module("investorApp", ["ngRoute", "ngAnimate","angularUtils.directives.dirPagination", "ui.bootstrap","angularMoment"])
         .config(['$httpProvider', function($httpProvider) { 
              //$httpProvider.defaults.cache = true; 
         }]); 

@@ -12,8 +12,8 @@ angular.module("investorApp").service("investorService", ["baseSvc","$http", fun
     var getAllTransaction_URL = base_URL + "transaction";
     var getLatestPuzzle_URL = base_URL + "puzzles/latest";
     var getAllPuzzle_URL = base_URL + "puzzles";
-    var getAllBlocks_URL = base_URL + "puzzles/blocks";
-   
+    var getLatestTransaction_URL = base_URL + "deals/latest";
+    var getAllBlocks_URL = base_URL + "deals";
     
      this.registerUser = function(param) {
         return $http({
@@ -128,6 +128,16 @@ angular.module("investorApp").service("investorService", ["baseSvc","$http", fun
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             url: getAllBlocks_URL
+        });
+    }
+    
+     this.getLatestTransaction = function() {   
+        return $http({
+            method: 'GET', 		
+             headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: getLatestTransaction_URL
         });
     }
     
