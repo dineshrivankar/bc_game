@@ -65,8 +65,8 @@ body{ padding-top: 70px; padding-bottom: 60px; }
 .user-section{ width: 202px; margin: 0 auto; }
 .user-name{ text-align: center; }
 
-.coin-dtl-section{ /*background-color: #8bb8f1;*/ background-color: #fff; border: 2px solid #8bb8f1; padding: 16px 23px; margin-bottom: 17px; border-radius: 5px; }
-.coin-dtl-section.mined{ /*background-color:#9289ca;*/ border: 2px solid #9289ca;}
+.coin-dtl-section{ /*background-color: #8bb8f1;*/ background-color: #fff; border-left: 5px solid #8bb8f1; padding: 16px 23px; margin-bottom: 17px; border-radius: 5px; }
+.coin-dtl-section.mined{ /*background-color:#9289ca;*/ border-left: 5px solid #9289ca;}
 .coin-icon-wrap{ position: relative; width: 30px; height: 30px; border-radius: 50%; overflow: hidden; 
     display: inline-block; vertical-align: middle; margin-right: 10px; }
 .coin-icon-wrap > img{ width: 110%; position: absolute; top: -2px; left: -2px; }
@@ -74,7 +74,7 @@ body{ padding-top: 70px; padding-bottom: 60px; }
 
 .update-head-wrap{ /*background-color: #5d9cec;*/ background-color: #00569a; padding: 2px 17px; margin-bottom: 10px; color: #fff; }
 .update-head-wrap h3{ }
-.transfer-coin-row{ background-color: #fff; border: 2px solid #fff; border-radius: 5px; padding: 5px 0;  }
+.transfer-coin-row{ background-color: #fff; border: 2px solid #cacaca;  padding: 10px 0;  }
 .ppl-pic-wrap{ width:40px; height: 40px; overflow: hidden; display: inline-block; vertical-align: middle; }
 .ppl-pic-wrap > img{ width: 100%; }
 .transfer-coin-row span.fa{ margin: 0 15px; font-size: 25px; vertical-align: middle; color: #6c7780; }
