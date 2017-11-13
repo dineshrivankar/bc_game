@@ -86,7 +86,7 @@ angular.module("investorApp")
                         }
             var myData = $scope.methodSerialize(param); 
             
-           investorService.loginUser(myData)
+           investorService.registerUser(myData)
                  .success(function(response){  
                     $location.path('/dashboard', true);
                     $scope.isSignInLoaded = false; 

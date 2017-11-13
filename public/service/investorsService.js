@@ -13,7 +13,7 @@ angular.module("investorApp").service("investorService", ["baseSvc","$http", fun
     var getLatestPuzzle_URL = base_URL + "puzzles/latest";
     var getAllPuzzle_URL = base_URL + "puzzles";
     var getLatestTransaction_URL = base_URL + "deals/latest";
-    var getAllBlocks_URL = base_URL + "deals";
+    var getAllBlocks_URL = base_URL + "puzzles/blocks";
     
      this.registerUser = function(param) {
         return $http({
