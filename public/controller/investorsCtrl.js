@@ -34,7 +34,8 @@ angular.module("investorApp")
     $scope.availableCoins = 0;
     
     // Tab selection
-    $scope.selectedTab = "";
+    $scope.selectedTab = "";     
+    $scope.latestTransDtl = [];
     
     $scope.signUp = function(frmSignUp){   
          if($scope.frmSignIn.signInEmail.trim() == ""){
@@ -165,12 +166,11 @@ angular.module("investorApp")
                     $scope.availableCoins = response.balance;
                 }).error(function(error){ 
                   console.log("Error in loading dashboard!")
-             }); 
-             $scope.getLatestTransactions();
+             });  
     }; 
     
-     $scope.latestTransDtl = [];
      $scope.getLatestTransactions = function(){  
+         $scope.latestTransDtl = [];
            investorService.getLatestTransaction()
                  .success(function(response){ 
                    if(response){
@@ -286,6 +286,7 @@ angular.module("investorApp")
      $rootScope.$on( "$routeChangeStart", function(event, next, current) { 
         if(next.originalPath=="/dashboard"){
             $scope.getDashBoardDetails();
+            $scope.getLatestTransactions();
             $scope.selectedTab = "dashboard";
         }else if(next.originalPath=="/transaction"){
              $scope.getTransaction();
@@ -294,8 +295,8 @@ angular.module("investorApp")
              $scope.getAllBlockDetails();
             $scope.selectedTab = "block";
         }else if(next.originalPath=="/sendCoin"){
-              $scope.getDashBoardDetails();
-            $scope.selectedTab = "sendCoin";
+             $scope.getDashBoardDetails();
+             $scope.selectedTab = "sendCoin";
         }else{
             $rootScope.isHeaderShow = false;
             $rootScope.isFooterShow = false;
@@ -314,7 +315,7 @@ angular.module("investorApp")
         }else {
             $rootScope.isHeaderShow = true;
             $rootScope.isFooterShow = true;
-            if(homeUrl.indexOf('dashboard') > -1){
+           /* if(homeUrl.indexOf('dashboard') > -1){
                 $scope.getDashBoardDetails();
             }else if(homeUrl.indexOf('block') > -1){
                  $scope.getAllBlockDetails();
@@ -322,16 +323,16 @@ angular.module("investorApp")
                 $scope.getTransaction();
             }else if(homeUrl.indexOf('sendCoin') > -1){
                 $scope.getDashBoardDetails();
-            }              
+            }  */            
         }
         
-         setInterval(function() {
+       /*  setInterval(function() {
          var homeUrl =$location.path()// window.location.href.split()
         if(homeUrl != "/"){
              $scope.toggleModel();
         }
        
-    }, 10000);
+    }, 1000);*/
     })
 
 }]); 
