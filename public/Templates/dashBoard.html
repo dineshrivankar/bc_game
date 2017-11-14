@@ -1,4 +1,4 @@
-
+{{currentSeconds}}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -27,7 +27,11 @@
                             <img class="" src="/assets/img/light/MinedCoins.png" alt="" />
                         </div>
                         <div class="content-info-wrap">
-                            <h1>{{dashBoardDtl.blocksMined}} <span>Mined Coins</span></h1>
+                            <h1>{{dashBoardDtl.blocksMined}} 
+								<span ng-if="dashBoardDtl.blocksMined==0">Blocks Mined </span>
+								<span ng-if="dashBoardDtl.blocksMined==1" >Block Mined </span>
+								<span ng-if="dashBoardDtl.blocksMined>1" >Blocks Mined </span>
+								</h1>
                         </div>
                     </div>
                 </div>

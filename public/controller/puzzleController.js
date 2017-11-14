@@ -23,6 +23,7 @@ angular.module("investorApp").controller('puzzleController', ['$scope','$rootSco
 					if($scope.status == 201){
 						swal({title: "Congratulations!",text: "You mined the block successfully. You are rewarded with 25 coins.",icon: "success",timer: 5000});					
 						$rootScope.dashBoardDtl.balance = $rootScope.dashBoardDtl.balance + 25;
+						$rootScope.dashBoardDtl.blocksMined = $rootScope.dashBoardDtl.blocksMined + 1;
 					}else if ($scope.status == 200){
 						swal({title: "Correct answer!",text: "The block has already been mined.",icon: "warning",timer: 5000});							
 					}else if($scope.status == 204){
