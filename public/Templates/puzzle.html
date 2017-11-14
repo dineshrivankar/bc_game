@@ -1,19 +1,27 @@
 <div class="container">
 <div class="row">
-
-	<div class="col-md-12">
+	<div class="col-md-6">
 		<div class="modal-header">
 			<h3 class="modal-title" >It's Puzzle Time !!!!</h3>
 		</div>
 		<div class="modal-body" id="modal-body-{{name}}">
 			<h5> Whats the result of the below mathematical expression ?</h5><br>
-			<div class="modal-question" ng-repeat="option in options track by $index" >
-					<span ng-if="$index > 0">+</span> {{option}}
-			</div>  
-			<div>
-				<input type="text" class="form-control" ng-model="answer" valid-number>
-				<input type="hidden" ng-model="questionID">
-				<input type="hidden" ng-model="loggedInUser">
+			<div class="modal-question" >
+					<div class="row" ng-repeat="option in options track by $index" > 
+                        <div class="col-xs-5" style="text-align: right;">
+							<label for="plus" ng-if="$index > 0"> +</label>
+                        </div>
+                        <div class="col-xs-6">
+							<label for="secondNumber">{{option}}</label>
+                        </div>
+                    </div>
+				<div class="row">	
+					<div class="col-xs-6 col-xs-offset-3">
+						<input type="text" class="form-control" ng-model="answer" valid-number>
+						<input type="hidden" ng-model="questionID">
+						<input type="hidden" ng-model="loggedInUser">
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="modal-footer">
@@ -22,65 +30,7 @@
 			{{currentSeconds}} Sec
 		</div>
 	</div>
-
-
-<div class="col-md-12">
- <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" ng-click="toggleModel()" id="#myModal">Open Modal</button>-->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog" style="width: 400px;">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Puzzle</h4>
-        </div>
-        <div class="modal-body">
-              <div>
-                    <div  class="row"> 
-                        <div class="col-xs-6 col-xs-offset-5">
-                            <label for="firstNumber">10</label>
-                        </div>
-                    </div> 
-                    <div class="row" > 
-                        <div class="col-xs-5" style="text-align: right;">
-                       <label for="plus" >+</label>
-                        </div>
-                        <div class="col-xs-6">
-                         <label for="secondNumber">20</label>
-                        </div>
-                    </div>
-                  <div class="row" > 
-                        <div class="col-xs-5" style="text-align: right;">
-                       <label for="plus" >+</label>
-                        </div>
-                        <div class="col-xs-6">
-                         <label for="secondNumber">20</label>
-                        </div>
-                    </div>
-                    <div  class="row"> 
-                        <div class="col-xs-12">
-                            <div style="border-bottom: 1px solid #e5e5e5;height: 29px;"></div>
-                        </div>
-                    </div> 
-                    <div class="row"> 
-                        <div class="col-xs-6 col-xs-offset-3" style="padding-top: 5px;padding-bottom: 5px;">
-                          <input type="text" />
-                        </div>
-                    </div> 
-                     <div  class="row"> 
-                        <div class="col-xs-12">
-                            <div style="border-top: 1px solid #e5e5e5;height: 29px;"></div>
-                        </div>
-                    </div> 
-                </div>
-            
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-    </div>      
-    </div>
-   </div>
 </div>
-</div></div>
+</div>
 
 
