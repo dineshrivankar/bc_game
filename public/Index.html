@@ -45,22 +45,24 @@
     <script type="text/javascript" src="assets/libs/angularjs/angular-moment.min.js"></script>
     <script src="assets/libs/ui-bootstrap/ui-bootstrap-custom-2.5.0.min.js" ></script> 
     <script src="assets/libs/ui-bootstrap/ui-bootstrap-custom-tpls-2.5.0.min.js" ></script> 
+    <script src="assets/libs/ui-bootstrap/ui-bootstrap-tpls-0.11.2.js" ></script> 
    
         
   
     <script src="assets/libs/dirPagination.js"></script> 
-
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>	
     <script type="text/javascript" src="common/app.js"></script> 
     <script type="text/javascript" src="common/appRoute.js"></script> 
     <script type="text/javascript" src="service/baseSvc.js"></script>
     <script type="text/javascript" src="service/investorsService.js"></script>
     <script type="text/javascript" src="controller/investorsCtrl.js"></script> 
+    <script type="text/javascript" src="controller/puzzleController.js"></script> 
 
 
 
     <div data-ng-app="investorApp" ng-controller="investorsCtrl"> 
         <div ng-show="isHeaderShow" class="app-header" ng-include='"Templates/header.html"'></div>
-        <div class="app-footer" ng-include='"Templates/puzzle.html"'></div>
+        <!--div class="app-footer" ng-include='"Templates/puzzle.html"'></div-->
         <div class="people-app" ng-view></div>
         <div ng-show="isFooterShow" class="app-footer" ng-include='"Templates/footer.html"'></div>
     </div>

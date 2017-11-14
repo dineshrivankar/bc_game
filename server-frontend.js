@@ -8,13 +8,12 @@ var server = connect(
 	connect.static(__dirname + '/public')
 ).listen(port);
 
-// Game sockets
-/*var io = socketio.listen(server);
-io.sockets.on('connection', function(socket) {
-	
+// Puzzle Sockets
+var io = socketio.listen(server);
+io.sockets.on('connection', function(socket) {	
 	socket.emit('getTime');
 	socket.on('getTime', function(obj) {
+		console.log(new Date().getSeconds());
 		socket.emit('getTime', new Date().getSeconds());
 	});
 });
-*/
