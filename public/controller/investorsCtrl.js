@@ -1,6 +1,6 @@
  
 angular.module("investorApp") 
-.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route","$interval","$modal", function ($scope,$rootScope, investorService, $location,$window,moment,$route,$interval,$modal) {   
+.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route","$interval","$routeParams","$modal", function ($scope,$rootScope, investorService, $location,$window,moment,$route,$interval,$routeParams,$modal) {   
    
     //Socket Connection
     var socket = io.connect();
@@ -263,8 +263,8 @@ angular.module("investorApp")
     
      	//Transaction  Screen code starts here-----------------    
       $scope.getTransaction = function(){
-			$scope.isSignUpLoaded = true;		  
-           investorService.getAllTransaction()
+           $scope.isSignUpLoaded = true; 
+                investorService.getAllTransaction()
                  .success(function(response){ 				 
 				    $location.path('/transaction', true);
                     $scope.transactionDtl = response;
@@ -273,9 +273,22 @@ angular.module("investorApp")
                     $scope.isFooterShow = true;
                 }).error(function(error){ 
                   console.log("Error in loading transaction!")
+             });  
+      }; 
+    
+      $scope.getTransactionById = function(bid){
+           $scope.isSignUpLoaded = true;	 
+                investorService.getTransByBlockId(bid)
+                 .success(function(response){ 				 
+				    //$location.path('/transaction', true);
+                    $scope.transactionDtl = response;
+                    $scope.isSignUpLoaded = false;                
+                    $scope.isHeaderShow = true;
+                    $scope.isFooterShow = true;
+                }).error(function(error){ 
+                  console.log("Error in loading transaction!")
              }); 
-             
-   }; 
+     }; 
     //Transaction Screen code end here-----------------
     
       $scope.toggleModel=function(){                                                            
@@ -303,6 +316,9 @@ angular.module("investorApp")
             $scope.getDashBoardDetails();
             $scope.getLatestTransactions();
             $scope.selectedTab = "dashboard";
+        }else if(next.originalPath=="/transaction/:bid"){
+             $scope.getTransactionById(next.params.bid);
+            $scope.selectedTab = "transaction";
         }else if(next.originalPath=="/transaction"){
              $scope.getTransaction();
             $scope.selectedTab = "transaction";
@@ -316,8 +332,7 @@ angular.module("investorApp")
             $rootScope.isHeaderShow = false;
             $rootScope.isFooterShow = false;
            // $('body').css({ "padding":"0" }); 
-        }
-         
+        } 
          
      });
     
@@ -329,25 +344,16 @@ angular.module("investorApp")
             $('body').css({ "padding":"0" }); 
         }else {
             $rootScope.isHeaderShow = true;
-            $rootScope.isFooterShow = true;
-           /* if(homeUrl.indexOf('dashboard') > -1){
-                $scope.getDashBoardDetails();
-            }else if(homeUrl.indexOf('block') > -1){
-                 $scope.getAllBlockDetails();
-            }else if(homeUrl.indexOf('transaction') > -1){
-                $scope.getTransaction();
-            }else if(homeUrl.indexOf('sendCoin') > -1){
-                $scope.getDashBoardDetails();
-            }  */            
+            $rootScope.isFooterShow = true; 
         }
         
-       /*  setInterval(function() {
+         setInterval(function() {
          var homeUrl =$location.path()// window.location.href.split()
         if(homeUrl != "/"){
              $scope.toggleModel();
         }
        
-    }, 1000);*/
+    }, 5000);
     })
 
 	

@@ -32,6 +32,9 @@ angular.module("investorApp").config(['$routeProvider', '$compileProvider', '$ht
         .when("/transaction", {
             templateUrl:"Templates/transactions.html"
         })  
+        .when("/transaction/:bid", {
+            templateUrl:"Templates/transactions.html"
+        }) 
     //Override the default regular expression that is used for whitelisting of safe urls during a[href] sanitization.
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|sip|file):/);
  
