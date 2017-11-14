@@ -177,7 +177,7 @@ angular.module("investorApp")
          $scope.loggedInUser = window.sessionStorage.getItem("loggedInUserName");
            investorService.getUserDetail($scope.loggedInUser)
                  .success(function(response){ 
-                    $scope.dashBoardDtl = response; 
+                    $rootScope.dashBoardDtl = response; 
                     $scope.availableCoins = response.balance;
                 }).error(function(error){ 
                   console.log("Error in loading dashboard!")
@@ -199,7 +199,7 @@ angular.module("investorApp")
     
     $scope.gotoDashBoard = function(){
          $location.path('/dashboard', true);
-         //$window.location.reload();
+         $window.location.reload();
     }
      
     $scope.gotoAllTransactions = function(){
@@ -356,65 +356,61 @@ angular.module("investorApp")
     }, 5000);
     })
 
-	
-	 
-	/*var modalInstance = $modal.open({
-		templateUrl: 'Templates/puzzle.html',
-		controller: 'puzzleController',
-		scope: $scope,		
-	});
-	$scope.question="123+123+231";
-	$scope.options = $scope.question.split("+");	
-	*/
+
+
 	//Puzzle Time 
-	$interval(function () {
-		socket.emit('getTime',"");	
-		if($scope.currentSeconds == 0){
-			//Create Question and options 
-			$scope.option = [];
-			$scope.operators = [];
-			$scope.numOperand = 3;
-			var i = 0;
-			for(i = 0; i < $scope.numOperand; i++) 	$scope.option[i] = Math.floor(Math.random()*900) + 100;
-			$scope.question = $scope.option[0] + "+" + $scope.option[1] + "+" + $scope.option[2];
-			$scope.answer = eval($scope.option[0] + $scope.option[1] + $scope.option[2]);
-			
-			var param = {"question": $scope.question,"answer": $scope.answer};
-            var myData = $scope.methodSerialize(param); 
-            investorService.savePuzzle(myData)
-                 .success(function(response){  
-					$scope.questionID = response.pid;
-					$scope.$broadcast('puzzleTime', $scope.questionID);
-                }).error(function(error){ 
-                   $scope.isSavePuzzleError = true;
-                   $scope.errorSavePuzzleMsg = error;
-             });				
-		}      
-	}, 1000);	
-	
-	socket.on('getTime', function(obj) {
-		$scope.currentSeconds = obj;
-		$scope.$apply();
-	});
-  
-	$scope.$on('puzzleTime', function(event, data){
-        $scope.answer = '';		
-		investorService.getLatestPuzzle()
-                 .success(function(response){ 
-                   if(response){
-                    $scope.question = response.question;
-					$scope.options = $scope.question.split("+");
-					$scope.questionID = response._id;
-					var modalInstance = $modal.open({
-						templateUrl: 'Templates/puzzle.html',
-						controller: 'puzzleController',
-						scope: $scope,		
-					});	
-                   }                   
-                }).error(function(error){ 
-                  console.log("Error in loading dashboard!")
-             }); 	
-    });
-	
+
+var homeUrl =$location.path()// window.location.href.split()
+    if(homeUrl != "/"){
+		$interval(function () {
+			socket.emit('getTime',"");	
+			if($scope.currentSeconds == 0){
+				//Create Question and options 
+				$scope.option = [];
+				$scope.operators = [];
+				$scope.numOperand = 3;
+				var i = 0;
+				for(i = 0; i < $scope.numOperand; i++) 	$scope.option[i] = Math.floor(Math.random()*900) + 100;
+				$scope.question = $scope.option[0] + "+" + $scope.option[1] + "+" + $scope.option[2];
+				$scope.answer = eval($scope.option[0] + $scope.option[1] + $scope.option[2]);
+				
+				var param = {"question": $scope.question,"answer": $scope.answer};
+				var myData = $scope.methodSerialize(param); 
+				investorService.savePuzzle(myData)
+					 .success(function(response){  
+						$scope.questionID = response.pid;
+						$scope.$broadcast('puzzleTime', $scope.questionID);
+					}).error(function(error){ 
+					   $scope.isSavePuzzleError = true;
+					   $scope.errorSavePuzzleMsg = error;
+				 });				
+			}      
+		}, 1000);	
+		
+		socket.on('getTime', function(obj) {
+			$scope.currentSeconds = obj;
+			$scope.$apply();
+		});
+	  
+		$scope.$on('puzzleTime', function(event, data){
+			$scope.answer = '';		
+			investorService.getLatestPuzzle()
+					 .success(function(response){ 
+					   if(response){
+						$scope.question = response.question;
+						$scope.options = $scope.question.split("+");
+						$scope.questionID = response._id;
+						var modalInstance = $modal.open({
+							templateUrl: 'Templates/puzzle.html',
+							controller: 'puzzleController',
+							scope: $scope,		
+						});	
+					   }                   
+					}).error(function(error){ 
+					  console.log("Error in loading dashboard!")
+				 }); 	
+		});
+	}
+
 }]); 
  
