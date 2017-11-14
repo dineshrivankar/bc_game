@@ -119,7 +119,7 @@ i.fa.fa-user-circle {
 
 /*Gaurav Code Start*/
 .footer .bottom-nav {background-color: #eee; color: #000; border-top: 3px solid #cacaca/*#00569a*/;}
-.footer .bottom-nav .nav-icon {width:24%; margin: 0 auto;display:inline-block; background-color: transparent;webkit-transition: background 2s;transition: background 2s;}
+.footer .bottom-nav .nav-icon {width:24%; margin: 0 auto;display:inline-block; background-color: transparent;/*webkit-transition: background 2s;transition: background 2s;*/}
 .footer .bottom-nav .nav-icon:hover {background-color:#cacaca;}
 .footer .bottom-nav .nav-icon.selected {background-color:#cacaca; }
 .footer .bottom-nav .nav-icon div {margin: 0 auto;}
