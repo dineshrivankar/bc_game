@@ -199,8 +199,7 @@ angular.module("investorApp")
    }; 
     
     $scope.gotoDashBoard = function(){
-         $location.path('/dashboard', true);
-         $window.location.reload();
+         $location.path('/dashboard', true); 
     }
      
     $scope.gotoAllTransactions = function(){
