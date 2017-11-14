@@ -1,6 +1,6 @@
  
 angular.module("investorApp") 
-.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route","$interval", function ($scope,$rootScope, investorService, $location,$window,moment,$route,$interval) {   
+.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route","$interval","$routeParams", function ($scope,$rootScope, investorService, $location,$window,moment,$route,$interval,$routeParams) {   
    
     //Header
     $scope.loggedInUser= "";
@@ -248,8 +248,8 @@ angular.module("investorApp")
     
      	//Transaction  Screen code starts here-----------------    
       $scope.getTransaction = function(){
-			$scope.isSignUpLoaded = true;		  
-           investorService.getAllTransaction()
+           $scope.isSignUpLoaded = true; 
+                investorService.getAllTransaction()
                  .success(function(response){ 				 
 				    $location.path('/transaction', true);
                     $scope.transactionDtl = response;
@@ -258,9 +258,22 @@ angular.module("investorApp")
                     $scope.isFooterShow = true;
                 }).error(function(error){ 
                   console.log("Error in loading transaction!")
+             });  
+      }; 
+    
+      $scope.getTransactionById = function(bid){
+           $scope.isSignUpLoaded = true;	 
+                investorService.getTransByBlockId(bid)
+                 .success(function(response){ 				 
+				    //$location.path('/transaction', true);
+                    $scope.transactionDtl = response;
+                    $scope.isSignUpLoaded = false;                
+                    $scope.isHeaderShow = true;
+                    $scope.isFooterShow = true;
+                }).error(function(error){ 
+                  console.log("Error in loading transaction!")
              }); 
-             
-   }; 
+     }; 
     //Transaction Screen code end here-----------------
     
       $scope.toggleModel=function(){                                                            
@@ -288,6 +301,9 @@ angular.module("investorApp")
             $scope.getDashBoardDetails();
             $scope.getLatestTransactions();
             $scope.selectedTab = "dashboard";
+        }else if(next.originalPath=="/transaction/:bid"){
+             $scope.getTransactionById(next.params.bid);
+            $scope.selectedTab = "transaction";
         }else if(next.originalPath=="/transaction"){
              $scope.getTransaction();
             $scope.selectedTab = "transaction";
@@ -301,8 +317,7 @@ angular.module("investorApp")
             $rootScope.isHeaderShow = false;
             $rootScope.isFooterShow = false;
            // $('body').css({ "padding":"0" }); 
-        }
-         
+        } 
          
      });
     
@@ -320,7 +335,7 @@ angular.module("investorApp")
             }else if(homeUrl.indexOf('block') > -1){
                  $scope.getAllBlockDetails();
             }else if(homeUrl.indexOf('transaction') > -1){
-                $scope.getTransaction();
+                $scope.getTransactiongetTransaction();
             }else if(homeUrl.indexOf('sendCoin') > -1){
                 $scope.getDashBoardDetails();
             }  */            
