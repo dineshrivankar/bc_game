@@ -35,10 +35,19 @@ angular.module("investorApp")
     
     // Tab selection
     $scope.selectedTab = "";     
-    $scope.latestTransDtl = [];
+    $scope.latestTransDtl = "";
     
-    $scope.signUp = function(frmSignUp){   
-         if($scope.frmSignIn.signInEmail.trim() == ""){
+    $scope.signUp = function(frmSignUp){
+		
+         investorService.generateUsername()
+                 .success(function(response){  
+                   $scope.frmSignIn.signInEmail = response;                    
+                }).error(function(error){ 
+                  $scope.errorSignUpMessage = error;  
+                  $scope.isSignUpErrorMessage = true;
+                  $scope.isSignUpLoaded = false;
+             }); 
+		/*if($scope.frmSignIn.signInEmail.trim() == ""){
             $scope.errorSignInMessage = "Please enter username!";  
             $scope.isSignInError = true;
         }else if($scope.frmSignIn.signInEmail.length < 5){
@@ -71,8 +80,8 @@ angular.module("investorApp")
                   $scope.errorSignUpMessage = error;  
                   $scope.isSignUpErrorMessage = true;
                   $scope.isSignUpLoaded = false;
-             }); 
-        }        
+             });
+        }         */
    }; 
     
     $scope.login = function(frmSignIn){ 
@@ -146,12 +155,12 @@ angular.module("investorApp")
         $scope.frmSignIn.signInPassword = "";
 
         //SignUp
-         $scope.isSignUpErrorMessage = false;
+        $scope.isSignUpErrorMessage = false;
         $scope.errorSignUpMessage = "";
         $scope.frmSignUp={};  
         $scope.frmSignUp.signUpEmail ="";
         $scope.frmSignUp.signUpPassword = "";
-        $scope.latestTransDtl = [];
+        $scope.latestTransDtl = "";
     }
     
     //Login Screen code ends here-----------------
@@ -170,11 +179,11 @@ angular.module("investorApp")
     }; 
     
      $scope.getLatestTransactions = function(){  
-         $scope.latestTransDtl = [];
+         $scope.latestTransDtl = "";
            investorService.getLatestTransaction()
                  .success(function(response){ 
                    if(response){
-                     $scope.latestTransDtl.push(response); 
+                     $scope.latestTransDtl = response; 
                    }                   
                 }).error(function(error){ 
                   console.log("Error in loading dashboard!")
