@@ -37,8 +37,17 @@ angular.module("investorApp")
     $scope.selectedTab = "";     
     $scope.latestTransDtl = [];
     
-    $scope.signUp = function(frmSignUp){   
-         if($scope.frmSignIn.signInEmail.trim() == ""){
+    $scope.signUp = function(frmSignUp){
+		
+         investorService.generateUsername()
+                 .success(function(response){  
+                   $scope.frmSignIn.signInEmail = response;                    
+                }).error(function(error){ 
+                  $scope.errorSignUpMessage = error;  
+                  $scope.isSignUpErrorMessage = true;
+                  $scope.isSignUpLoaded = false;
+             }); 
+		/*if($scope.frmSignIn.signInEmail.trim() == ""){
             $scope.errorSignInMessage = "Please enter username!";  
             $scope.isSignInError = true;
         }else if($scope.frmSignIn.signInEmail.length < 5){
@@ -71,8 +80,8 @@ angular.module("investorApp")
                   $scope.errorSignUpMessage = error;  
                   $scope.isSignUpErrorMessage = true;
                   $scope.isSignUpLoaded = false;
-             }); 
-        }        
+             });
+        }         */
    }; 
     
     $scope.login = function(frmSignIn){ 
