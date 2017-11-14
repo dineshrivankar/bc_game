@@ -10,7 +10,13 @@
                     <form id="frmSendCoin">
                         <div class="form-group">
                           <span style="color:red;">*</span><label for="username">User:</label>
-                            <input type="text" class="form-control" name="username" ng-model="frmSendCoin.toUserName"/>
+                            <input  list="allUserDetailList" type="text" class="form-control" 
+                                   name="username" autocomplete="off"
+                                   ng-model="frmSendCoin.toUserName" ng-keyup="suggetionList()" />
+                           
+                            <datalist id="allUserDetailList">
+								<option ng-repeat="item in results" value="{{item}}"></option>
+				           </datalist>
                         </div> 
                         <div class="form-group">
                             <span style="color:red;">*</span> <label for="coin">Coins:</label>
@@ -23,7 +29,8 @@
                          <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="sendCoin(frmSendCoin)">
                             Send</button>
 
-                          <p ng-if="isSendCoinError" class="pt-lg text-center text-danger"> {{errorSendCoinMsg}} </p>
+                          <p ng-if="isSendCoinError" class="pt-lg text-center" style="color: green;">
+                              {{errorSendCoinMsg}} </p>
                     </form>
                 </div> 
             </div>
