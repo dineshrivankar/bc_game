@@ -338,25 +338,16 @@ angular.module("investorApp")
             $('body').css({ "padding":"0" }); 
         }else {
             $rootScope.isHeaderShow = true;
-            $rootScope.isFooterShow = true;
-           /* if(homeUrl.indexOf('dashboard') > -1){
-                $scope.getDashBoardDetails();
-            }else if(homeUrl.indexOf('block') > -1){
-                 $scope.getAllBlockDetails();
-            }else if(homeUrl.indexOf('transaction') > -1){
-                $scope.getTransactiongetTransaction();
-            }else if(homeUrl.indexOf('sendCoin') > -1){
-                $scope.getDashBoardDetails();
-            }  */            
+            $rootScope.isFooterShow = true; 
         }
         
-       /*  setInterval(function() {
+         setInterval(function() {
          var homeUrl =$location.path()// window.location.href.split()
         if(homeUrl != "/"){
              $scope.toggleModel();
         }
        
-    }, 1000);*/
+    }, 5000);
     })
 
 }]); 
