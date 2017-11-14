@@ -35,7 +35,7 @@ angular.module("investorApp")
     
     // Tab selection
     $scope.selectedTab = "";     
-    $scope.latestTransDtl = [];
+    $scope.latestTransDtl = "";
     
     $scope.signUp = function(frmSignUp){
 		
@@ -155,12 +155,12 @@ angular.module("investorApp")
         $scope.frmSignIn.signInPassword = "";
 
         //SignUp
-         $scope.isSignUpErrorMessage = false;
+        $scope.isSignUpErrorMessage = false;
         $scope.errorSignUpMessage = "";
         $scope.frmSignUp={};  
         $scope.frmSignUp.signUpEmail ="";
         $scope.frmSignUp.signUpPassword = "";
-        $scope.latestTransDtl = [];
+        $scope.latestTransDtl = "";
     }
     
     //Login Screen code ends here-----------------
@@ -179,11 +179,11 @@ angular.module("investorApp")
     }; 
     
      $scope.getLatestTransactions = function(){  
-         $scope.latestTransDtl = [];
+         $scope.latestTransDtl = "";
            investorService.getLatestTransaction()
                  .success(function(response){ 
                    if(response){
-                     $scope.latestTransDtl.push(response); 
+                     $scope.latestTransDtl = response; 
                    }                   
                 }).error(function(error){ 
                   console.log("Error in loading dashboard!")
