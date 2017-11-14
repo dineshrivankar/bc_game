@@ -100,7 +100,7 @@ body { background-color: #eee; color: #496b7b;
 .send-n-view-btn{ margin-top: 200px; display: none;}
 .send-n-view-btn .btn{ margin-right: 10px; float: none; }
 
-.footer{ width: 100%; background-color: #00569a; color: #fff; position: fixed; left: 0; bottom: 0; text-align: center; }
+.footer{ width: 100%; background-color: #00569a; color: #fff; position: fixed; left: 0; bottom: 0; text-align: center; z-index: 5; }
 .footer > p{ padding: 6px; margin: 0; }
 
 
@@ -110,8 +110,8 @@ h4 {
 .dash-window {
     /*margin-top: 20px;*/
     padding: 20px 10px 20px 10px;
-    background-color: #f7f7f7;
-    border: 1px solid #f7f7f7;
+    /*background-color: #f7f7f7;*/
+    /*border: 1px solid #f7f7f7;*/
 }
 i.fa.fa-user-circle {
     font-size: 24px;
@@ -119,7 +119,7 @@ i.fa.fa-user-circle {
 
 /*Gaurav Code Start*/
 .footer .bottom-nav {background-color: #eee; color: #000; border-top: 3px solid #cacaca/*#00569a*/;}
-.footer .bottom-nav .nav-icon {width:24%; margin: 0 auto;display:inline-block; background-color: transparent;webkit-transition: background 2s;transition: background 2s;}
+.footer .bottom-nav .nav-icon {width:24%; margin: 0 auto;display:inline-block; background-color: transparent;/*webkit-transition: background 2s;transition: background 2s;*/}
 .footer .bottom-nav .nav-icon:hover {background-color:#cacaca;}
 .footer .bottom-nav .nav-icon.selected {background-color:#cacaca; }
 .footer .bottom-nav .nav-icon div {margin: 0 auto;}
@@ -167,7 +167,5 @@ img.actionlink { height: 30px; width: 30px;}
     .number-wrap { width: 27%; }
     .number-wrap > h3{ padding: 4px 0; }
 }
-.success {color:green;}
-.incorrect {color:red;}
 
 

@@ -199,8 +199,7 @@ angular.module("investorApp")
    }; 
     
     $scope.gotoDashBoard = function(){
-         $location.path('/dashboard', true);
-         $window.location.reload();
+         $location.path('/dashboard', true); 
     }
      
     $scope.gotoAllTransactions = function(){
@@ -352,7 +351,7 @@ angular.module("investorApp")
     $scope.suggetionList= function(){
       $scope.results=[];
         for (var i=0; i < $scope.allUserDetail.length; i++) {
-            if ($scope.allUserDetail[i].userName.startsWith($scope.frmSendCoin.toUserName)) {
+            if ($scope.allUserDetail[i].userName.toLowerCase().startsWith($scope.frmSendCoin.toUserName.toLowerCase())) {
                 $scope.results.push($scope.allUserDetail[i].userName);
                 if($scope.results.length>4)return false;
             }

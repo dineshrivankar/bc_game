@@ -2,12 +2,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="row" style="display:none;">
-                <div class="user-section">
-                    <div class="profile-pic-wrap">
-                        <img src="http://forums.foxitsoftware.com/core/images/default/default_avatar_large.png" />
+            <div class="row">
+               <!-- <div class="user-section">-->
+                 <div style="padding-bottom: 10px;">
+                    <div class="profile-pic-wrap" style="display: inline-block;">
+                        <img src="/assets/img/grey/UserProfile.png" />
                     </div>
-                    <h3 class="user-name">User Name</h3>
+                    <h3 style="display: inline-block;" class="user-name">{{loggedInUser}}</h3>
                 </div>
             </div>
             <div class="row">
@@ -17,7 +18,7 @@
                             <img class="" src="/assets/img/light/coins.png" alt="" />
                         </div>
                         <div class="content-info-wrap">
-                            <h1>{{dashBoardDtl.balance}} <span>PSL Coins</span></h1>
+                            <h3>{{dashBoardDtl.balance}} <span>PSL Coins</span></h3>
                         </div>
                     </div>
                 </div>
@@ -32,6 +33,7 @@
 								<span ng-if="dashBoardDtl.blocksMined==1" >Block Mined </span>
 								<span ng-if="dashBoardDtl.blocksMined>1" >Blocks Mined </span>
 								</h1>
+
                         </div>
                     </div>
                 </div>
@@ -42,7 +44,7 @@
                     <div class="transfer-coin-row" ng-repeat="trans in latestTransDtl">
                         <div class="ppl-pic-wrap">
                             <img class="img-responsive" src="/assets/img/grey/UserProfile.png" alt="" >
-                            <span>{{trans.fromUser}}</span>
+                            <figcaption>{{trans.fromUser}}</figcaption>
                         </div>
                         <div class="transaction-stats-wrap">
                             <h3 class="number-of-coin"> {{trans.amount}} coins</h3>
@@ -52,7 +54,7 @@
                         <!--<span class="fa fa-angle-double-right"></span>-->
                         <div class="ppl-pic-wrap">
                             <img class="img-responsive" src="/assets/img/grey/UserProfile.png" alt="" >
-                             <span>{{trans.toUser}}</span>
+                             <figcaption>{{trans.toUser}}</figcaption>
                         </div>
                     </div>
                      <input type="button" value="All transaction" class="btn invester-btn" 
