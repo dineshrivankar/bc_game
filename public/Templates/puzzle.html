@@ -1,5 +1,6 @@
 <div class="container">
 <div class="row">
+
 	<div class="col-md-6">
 		<div class="modal-header">
 			<h3 class="modal-title" >It's Puzzle Time !!!!</h3>
@@ -8,6 +9,7 @@
 			<h5> Whats the result of the below mathematical expression ?</h5><br>
 			<div class="modal-question" >
 					<div class="row" ng-repeat="option in options track by $index" > 
+
                         <div class="col-xs-5" style="text-align: right;">
 							<label for="plus" ng-if="$index > 0"> +</label>
                         </div>
@@ -15,6 +17,7 @@
 							<label for="secondNumber">{{option}}</label>
                         </div>
                     </div>
+
 				<div class="row">	
 					<div class="col-xs-6 col-xs-offset-3">
 						<input type="text" class="form-control" ng-model="answer" valid-number>
@@ -30,6 +33,7 @@
 			{{currentSeconds}} Sec
 		</div>
 	</div>
+
 </div>
 </div>
 
