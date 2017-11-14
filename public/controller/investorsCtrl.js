@@ -36,6 +36,7 @@ angular.module("investorApp")
     // Tab selection
     $scope.selectedTab = "";     
     $scope.latestTransDtl = "";
+     
     
     $scope.signUp = function(frmSignUp){
 		
@@ -256,6 +257,8 @@ angular.module("investorApp")
     //Send Coins Screen Code ends here -----------------
     
      	//Transaction  Screen code starts here-----------------    
+       
+      $scope.maxVisibleConnectionCount = 5;
       $scope.getTransaction = function(){
            $scope.isSignUpLoaded = true; 
                 investorService.getAllTransaction()
@@ -322,6 +325,7 @@ angular.module("investorApp")
         }else if(next.originalPath=="/sendCoin"){
              $scope.getDashBoardDetails();
              $scope.selectedTab = "sendCoin";
+             $scope.isSendCoinError =false;
         }else{
             $rootScope.isHeaderShow = false;
             $rootScope.isFooterShow = false;
@@ -330,7 +334,27 @@ angular.module("investorApp")
          
      });
     
+    
+    $scope.getAllUserDetail = function(){                   
+       investorService.getAllUserDetail().success(function(response){ 
+                $scope.allUserDetail = response;                                                                          
+            }).error(function(error){ 
+              console.log("Error in loading user details!");
+         });
+   };
+                                
+    $scope.suggetionList= function(){
+      $scope.results=[];
+        for (var i=0; i < $scope.allUserDetail.length; i++) {
+            if ($scope.allUserDetail[i].userName.startsWith($scope.frmSendCoin.toUserName)) {
+                $scope.results.push($scope.allUserDetail[i].userName);
+                if($scope.results.length>4)return false;
+            }
+        }
+    }
+
     angular.element(document).ready(function(){
+        $scope.getAllUserDetail();
         var homeUrl =$location.path()// window.location.href.split()
         if(homeUrl.indexOf('dashboard') <= -1 && homeUrl.indexOf('block') <= -1 && homeUrl.indexOf('transaction') <= -1 && homeUrl.indexOf('sendCoin') <= -1 ){
             $rootScope.isHeaderShow = false;
@@ -347,7 +371,7 @@ angular.module("investorApp")
              $scope.toggleModel();
         }
        
-    }, 5000);
+    }, 500000);
     })
 
 }]); 
