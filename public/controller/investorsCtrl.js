@@ -369,22 +369,13 @@ angular.module("investorApp")
             $rootScope.isHeaderShow = true;
             $rootScope.isFooterShow = true; 
         }
-        
-         setInterval(function() {
-         var homeUrl =$location.path()// window.location.href.split()
-        if(homeUrl != "/"){
-             $scope.toggleModel();
-        }
-       
-    }, 500000);
     })
 
 
 
 	//Puzzle Time 
 
-var homeUrl =$location.path()// window.location.href.split()
-    if(homeUrl != "/"){
+    if($rootScope.path != "/"){
 		$interval(function () {
 			socket.emit('getTime',"");	
 			if($scope.currentSeconds == 0){
@@ -434,6 +425,7 @@ var homeUrl =$location.path()// window.location.href.split()
 				 }); 	
 		});
 	}
+ 
 
 }]); 
  
