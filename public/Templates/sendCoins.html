@@ -29,7 +29,7 @@
                          <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="sendCoin(frmSendCoin)">
                             Send</button>
 
-                          <p ng-if="isSendCoinError" class="pt-lg text-center" style="color: green;">
+                          <p ng-if="isSendCoinError" class="pt-lg text-center" ng-style="{color:errMsgColor}">
                               {{errorSendCoinMsg}} </p>
                     </form>
                 </div> 

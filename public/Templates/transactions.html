@@ -5,8 +5,9 @@
                 <div class="col-md-12">
                     <div class="update-head-wrap">
                         <h3>Transactions</h3>
-                    </div>
-					
+                    </div> 
+					  <p ng-if="transactionDtl.length==0" class="pt-lg text-center text-danger" 
+                         style="font-size: large; font-weight: 600;"> No Transaction found!</p>
 					 <div class="transfer-coin-row" pagination-id="transactionPagination" 
                           dir-paginate="item in transactionDtl | itemsPerPage: maxVisibleConnectionCount">
                         <div class="ppl-pic-wrap">
@@ -24,8 +25,7 @@
                             <img class="img-responsive" src="/assets/img/grey/UserProfile.png" alt="">
 							<figcaption>{{::item.toUser}}</figcaption>
                         </div>
-                    </div>
-                   <!--  <div ng-if="userConnectionDetails.Connections && userConnectionDetails.Connections.length > maxVisibleConnectionCount" class="row rnm" style="height: 50px;text-align: center;">-->
+                    </div> 
                     <dir-pagination-controls max-size="5" boundary-links="true" pagination-id="transactionPagination">
                     </dir-pagination-controls>
            <!-- </div> -->

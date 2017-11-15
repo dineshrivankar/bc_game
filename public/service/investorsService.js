@@ -1,6 +1,6 @@
 angular.module("investorApp").service("investorService", ["baseSvc","$http", function(baseService,$http){ 
     
-    var base_URL = "http://10.244.51.108:9095/";
+    var base_URL = "http://10.46.35.61:9091/";
     var registerUserUrl = base_URL + "users/register";
     var sendCoin_URL = base_URL + "deals";
     var savePuzzle_URL = base_URL + "puzzles/save";
