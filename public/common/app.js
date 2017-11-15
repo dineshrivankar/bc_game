@@ -3,7 +3,13 @@
     angular.module("investorApp", ["ngRoute", "ngAnimate","angularUtils.directives.dirPagination", "ui.bootstrap","angularMoment","ngStorage"])
         .config(['$httpProvider', function($httpProvider) { 
              //$httpProvider.defaults.cache = true; 
-        }]); 
+        }]) 
+		.run(['$rootScope', '$location',  '$http', '$interval', '$timeout',
+			function ($rootScope, $location,  $http, $interval, $timeout) {
+				$rootScope.$on('$locationChangeStart', function (event, next, current) {
+					$rootScope.path = $location.path();
+				});
+			}]); 
        
 })();
 
