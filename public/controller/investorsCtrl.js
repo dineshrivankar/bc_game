@@ -1,6 +1,6 @@
  
 angular.module("investorApp") 
-.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route","$interval","$routeParams","$modal", function ($scope,$rootScope, investorService, $location,$window,moment,$route,$interval,$routeParams,$modal) {   
+.controller("investorsCtrl", ["$scope","$rootScope", "investorService",'$location','$window',"moment","$route","$interval","$routeParams","$modal","$localStorage", function ($scope,$rootScope, investorService, $location,$window,moment,$route,$interval,$routeParams,$modal,$localStorage) {   
    
     //Socket Connection
     var socket = io.connect();
@@ -111,11 +111,12 @@ angular.module("investorApp")
                     $location.path('/dashboard', true);
                     $scope.isSignInLoaded = false; 
                     $window.sessionStorage.setItem("loggedInUserName",$scope.frmSignIn.signInEmail)
+                    $localStorage.loggedInUserName= $scope.frmSignIn.signInEmail; 
                     $rootScope.isHeaderShow = true;
                     $rootScope.isFooterShow = true;
                     $scope.loggedInUser = $scope.frmSignIn.signInEmail;
                     $scope.getDashBoardDetails();
-                    $('body').css({"padding":"70px 0 40px 0"});
+                    $('body').css({"padding":"70px 0 40px 0"}); 
                     clearAll();
                 }).error(function(error){ 
                     $scope.errorSignInMessage = error;  
@@ -130,6 +131,7 @@ angular.module("investorApp")
         $rootScope.isFooterShow = false;
         $('body').css({ "padding":"0" });
         $window.sessionStorage.setItem("loggedInUserName","");
+        $localStorage.loggedInUserName= "";
         clearAll()
         $location.path('/', true); 
     };
@@ -175,7 +177,8 @@ angular.module("investorApp")
     //DashBoard Screen code starts here-----------------
     
       $scope.getDashBoardDetails = function(){  
-         $scope.loggedInUser = window.sessionStorage.getItem("loggedInUserName");
+          //$scope.loggedInUser = $window.sessionStorage.getItem("loggedInUserName");
+          $scope.loggedInUser = $localStorage.loggedInUserName;
            investorService.getUserDetail($scope.loggedInUser)
                  .success(function(response){ 
                     $rootScope.dashBoardDtl = response; 
@@ -233,7 +236,8 @@ angular.module("investorApp")
             $scope.errorSendCoinMsg ="Amount must be greater than 0";
             return;
          }
-         var frmUser = $window.sessionStorage.getItem("loggedInUserName");
+         //var frmUser = $window.sessionStorage.getItem("loggedInUserName");
+        var frmUser = $localStorage.loggedInUserName;
           
            var param = {
                           "fromUser": frmUser,
@@ -265,31 +269,31 @@ angular.module("investorApp")
        
       $scope.maxVisibleConnectionCount = 5;
       $scope.getTransaction = function(){
-           $scope.isSignUpLoaded = true; 
+          // $scope.isSignUpLoaded = true; 
                 investorService.getAllTransaction()
                  .success(function(response){ 				 
 				    $location.path('/transaction', true);
                     $scope.transactionDtl = response;
-                    $scope.isSignUpLoaded = false;                
-                    $scope.isHeaderShow = true;
-                    $scope.isFooterShow = true;
+                 //   $scope.isSignUpLoaded = false;                
+                   /* $scope.isHeaderShow = true;
+                    $scope.isFooterShow = true;*/
                 }).error(function(error){ 
                   console.log("Error in loading transaction!")
              });  
       }; 
     
       $scope.getTransactionById = function(bid){
-           $scope.isSignUpLoaded = true;	 
-                investorService.getTransByBlockId(bid)
-                 .success(function(response){ 				 
-				    //$location.path('/transaction', true);
-                    $scope.transactionDtl = response;
-                    $scope.isSignUpLoaded = false;                
-                    $scope.isHeaderShow = true;
-                    $scope.isFooterShow = true;
-                }).error(function(error){ 
-                  console.log("Error in loading transaction!")
-             }); 
+       //$scope.isSignUpLoaded = true;	 
+            investorService.getTransByBlockId(bid)
+             .success(function(response){ 				 
+                //$location.path('/transaction', true);
+                $scope.transactionDtl = response;
+               /* $scope.isSignUpLoaded = false;                
+                $scope.isHeaderShow = true;
+                $scope.isFooterShow = true;*/
+            }).error(function(error){ 
+              console.log("Error in loading transaction!")
+         }); 
      }; 
     //Transaction Screen code end here-----------------
     
@@ -313,11 +317,12 @@ angular.module("investorApp")
       $location.path('/transaction/'+id, true);
     }
     
-     $rootScope.$on( "$routeChangeStart", function(event, next, current) { 
+     $rootScope.$on( "$routeChangeStart", function(event, next, current) {  
         if(next.originalPath=="/dashboard"){
             $scope.getDashBoardDetails();
             $scope.getLatestTransactions();
             $scope.selectedTab = "dashboard";
+           //  $scope.getTimeForPuzzle();
         }else if(next.originalPath=="/transaction/:bid"){
              $scope.getTransactionById(next.params.bid);
             $scope.selectedTab = "transaction";
@@ -382,7 +387,35 @@ angular.module("investorApp")
 
 
 	//Puzzle Time 
-
+$scope.getTimeForPuzzle =function(){
+    // if(homeUrl != "/"){
+    	$interval(function () {
+			socket.emit('getTime',"");	
+			if($scope.currentSeconds == 0){
+				//Create Question and options 
+				$scope.option = [];
+				$scope.operators = [];
+				$scope.numOperand = 3;
+				var i = 0;
+				for(i = 0; i < $scope.numOperand; i++) 	$scope.option[i] = Math.floor(Math.random()*900) + 100;
+				$scope.question = $scope.option[0] + "+" + $scope.option[1] + "+" + $scope.option[2];
+				$scope.answer = eval($scope.option[0] + $scope.option[1] + $scope.option[2]);
+				
+				var param = {"question": $scope.question,"answer": $scope.answer};
+				var myData = $scope.methodSerialize(param); 
+				investorService.savePuzzle(myData)
+					 .success(function(response){  
+						$scope.questionID = response.pid;
+						$scope.$broadcast('puzzleTime', $scope.questionID);
+					}).error(function(error){ 
+					   $scope.isSavePuzzleError = true;
+					   $scope.errorSavePuzzleMsg = error;
+				 });				
+			}      
+		}, 1000);
+    // }
+};
+    
 var homeUrl =$location.path()// window.location.href.split()
     if(homeUrl != "/"){
 		$interval(function () {

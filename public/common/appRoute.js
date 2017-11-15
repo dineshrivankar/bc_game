@@ -4,9 +4,14 @@ angular.module("investorApp").config(['$routeProvider', '$compileProvider', '$ht
         .when("/", {
 	   		templateUrl:"Templates/signupLanding.html",
              resolve:{
-                data: [ '$rootScope', '$location', function($rootScope,$location){
+                data: [ '$rootScope', '$location',"$localStorage", function($rootScope,$location,$localStorage){
+                    var a =  $localStorage.loggedInUserName==undefined?"":$localStorage.loggedInUserName;
+                    if(a !=""){
+                         $location.path('/dashboard', true);
+                        return;
+                    }
                     $rootScope.isHeaderShow = false;
-                     $rootScope.isFooterShow = false;
+                    $rootScope.isFooterShow = false;
                     $('body').css({"padding":"0 0 0 0"});
                 }]
             }
